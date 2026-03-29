@@ -173,14 +173,27 @@ const CoursePage = () => {
         {/* Tools & Software */}
         <Section title="Tools & Software" delay={0.6}>
           <div className="flex flex-wrap gap-3">
-            {course.toolsSoftware.map((tool, i) => (
-              <span
-                key={i}
-                className="glass px-4 py-2 rounded-lg text-sm text-foreground border border-border/50 font-heading"
-              >
-                {tool}
-              </span>
-            ))}
+            {course.toolsSoftware.map((tool, i) => {
+              const link = course.toolsLinks?.[tool];
+              return link ? (
+                <a
+                  key={i}
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass px-4 py-2 rounded-lg text-sm text-foreground border border-border/50 font-heading hover:border-primary/50 hover:text-primary transition-colors"
+                >
+                  {tool}
+                </a>
+              ) : (
+                <span
+                  key={i}
+                  className="glass px-4 py-2 rounded-lg text-sm text-foreground border border-border/50 font-heading"
+                >
+                  {tool}
+                </span>
+              );
+            })}
           </div>
         </Section>
 
