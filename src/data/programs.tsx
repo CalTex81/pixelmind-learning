@@ -21,6 +21,7 @@ export interface Program {
   disclaimer?: string;
   prerequisites: string[];
   toolsSoftware: string[];
+  toolsLinks?: Record<string, string>;
   outcomes: string[];
 }
 
