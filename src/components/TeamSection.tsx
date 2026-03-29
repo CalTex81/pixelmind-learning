@@ -10,9 +10,9 @@ interface TeamMember {
 
 const team: TeamMember[] = [
   {
-    name: "Maya Chen",
+    name: "Anish Sahoo",
     role: "Founder & Executive Director",
-    bio: "Former CS teacher turned nonprofit leader. Passionate about making tech education fun and accessible for all kids.",
+    bio: "Freshman at Mission San Jose High | Passionate Computer Science & Artificial Intelligence Student",
     socials: [
       { type: "twitter", url: "#" },
       { type: "linkedin", url: "#" },
