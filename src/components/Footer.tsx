@@ -1,4 +1,4 @@
-import { Github, Twitter, Instagram, Youtube, Heart } from "lucide-react";
+import { Instagram, Facebook, Heart } from "lucide-react";
 
 const footerLinks = [
   { label: "About", href: "#about" },
@@ -9,10 +9,8 @@ const footerLinks = [
 ];
 
 const socials = [
-  { icon: <Twitter size={18} />, href: "#", label: "Twitter" },
-  { icon: <Instagram size={18} />, href: "#", label: "Instagram" },
-  { icon: <Youtube size={18} />, href: "#", label: "YouTube" },
-  { icon: <Github size={18} />, href: "#", label: "GitHub" },
+  { icon: <Instagram size={18} />, href: "https://www.instagram.com/pixelmindlearning/", label: "Instagram" },
+  { icon: <Facebook size={18} />, href: "https://www.facebook.com/profile.php?id=61582190049665", label: "Facebook" },
 ];
 
 const Footer = () => {
