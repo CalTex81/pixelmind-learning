@@ -16,13 +16,24 @@ const parseFeed = (data: any): BlogPost[] => {
     if (!Array.isArray(entries)) return [];
     return entries.map((entry: any) => {
       const link = entry.link?.find((l: any) => l.rel === "alternate")?.href || "#";
-      const summary = entry.summary?.$t || entry.content?.$t?.replace(/<[^>]*>/g, "").slice(0, 160) || "";
+
+      const strip = (html: string) => html.replace(/<[^>]*>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
+      const rawSummary = entry.summary?.$t ? strip(entry.summary.$t) : "";
+      const rawContent = entry.content?.$t ? strip(entry.content.$t) : "";
+      let cleanSummary = rawSummary.length > 20 ? rawSummary : rawContent;
+      if (!cleanSummary) cleanSummary = "A new story from Within the Pixel.";
+      // Trim to ~220 chars ending at a word boundary
+      if (cleanSummary.length > 220) {
+        cleanSummary = cleanSummary.slice(0, 220).replace(/\s+\S*$/, "") + "…";
+      }
+
       const published = entry.published?.$t;
       const date = published ? new Date(published).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "";
+
       return {
         title: entry.title?.$t || "Untitled",
-        summary: summary.replace(/<[^>]*>/g, "").slice(0, 160),
-        author: entry.author?.[0]?.name?.$t || "PixelMind",
+        summary: cleanSummary,
+        author: "Anish Sahoo",
         date,
         url: link,
       };
