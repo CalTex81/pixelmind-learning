@@ -21,6 +21,10 @@ const parseFeed = (data: any): BlogPost[] => {
       const rawSummary = entry.summary?.$t ? strip(entry.summary.$t) : "";
       const rawContent = entry.content?.$t ? strip(entry.content.$t) : "";
       let cleanSummary = rawSummary.length > 20 ? rawSummary : rawContent;
+      
+      // Add newline after dashed separator
+      cleanSummary = cleanSummary.replace(/(---+) /g, "$1\n");
+
       if (!cleanSummary) cleanSummary = "A new story from Within the Pixel.";
       // Trim to ~220 chars ending at a word boundary
       if (cleanSummary.length > 220) {
@@ -119,7 +123,7 @@ const BlogSection = () => {
                 <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-secondary transition-colors">
                   {featured.title}
                 </h3>
-                <p className="text-muted-foreground mb-4 max-w-2xl">{featured.summary}</p>
+                <p className="text-muted-foreground mb-4 max-w-2xl whitespace-pre-line">{featured.summary}</p>
                 <div className="flex items-center gap-4 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1"><User size={12} /> {featured.author}</span>
                   <span className="flex items-center gap-1"><Calendar size={12} /> {featured.date}</span>
@@ -144,7 +148,7 @@ const BlogSection = () => {
                   <h3 className="font-heading text-lg font-bold text-foreground mb-2 group-hover:text-secondary transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{post.summary}</p>
+                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed whitespace-pre-line">{post.summary}</p>
                   <div className="flex items-center gap-4 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1"><User size={12} /> {post.author}</span>
                     <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
