@@ -98,8 +98,8 @@ export const programs: Program[] = [
       "Curiosity and willingness to problem-solve",
     ],
     toolsSoftware: [
-      "Python 3.x",
-      "VS Code or Thonny IDE",
+      "PyCharm",
+      "VS Code",
       "Google Colab (optional)",
     ],
     outcomes: [
