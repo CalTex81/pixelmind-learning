@@ -21,6 +21,7 @@ export interface Program {
   disclaimer?: string;
   prerequisites: string[];
   toolsSoftware: string[];
+  toolsLinks?: Record<string, string>;
   outcomes: string[];
 }
 
@@ -100,8 +101,11 @@ export const programs: Program[] = [
     toolsSoftware: [
       "PyCharm",
       "VS Code",
-      "Google Colab (optional)",
     ],
+    toolsLinks: {
+      "PyCharm": "https://www.jetbrains.com/pycharm/",
+      "VS Code": "https://code.visualstudio.com/",
+    },
     outcomes: [
       "Ability to write and run Python programs independently",
       "Understanding of core programming concepts transferable to other languages",
