@@ -1,5 +1,11 @@
 import { Code, Box, BarChart3, Trophy, Calculator } from "lucide-react";
 
+export interface CurriculumSection {
+  title: string;
+  subtopics?: string[];
+  link?: { label: string; url: string };
+}
+
 export interface Program {
   title: string;
   slug: string;
@@ -10,6 +16,9 @@ export interface Program {
   overview: string;
   learningObjectives: string[];
   weeklyBreakdown: { week: string; topic: string; details: string }[];
+  curriculumOutline?: CurriculumSection[];
+  curriculumTitle?: string;
+  disclaimer?: string;
   prerequisites: string[];
   toolsSoftware: string[];
   outcomes: string[];
@@ -34,14 +43,55 @@ export const programs: Program[] = [
       "Debug and troubleshoot code independently",
       "Build a capstone project from scratch",
     ],
-    weeklyBreakdown: [
-      { week: "Week 1", topic: "Hello, Python!", details: "Setting up the environment, print statements, variables, and basic math operations." },
-      { week: "Week 2", topic: "Making Decisions", details: "Conditionals (if/elif/else), comparison operators, and boolean logic." },
-      { week: "Week 3", topic: "Loops & Repetition", details: "For loops, while loops, loop control with break/continue." },
-      { week: "Week 4", topic: "Functions & Modularity", details: "Defining functions, parameters, return values, and code reuse." },
-      { week: "Week 5", topic: "Data Structures", details: "Lists, tuples, dictionaries, and iterating over collections." },
-      { week: "Week 6", topic: "Files & Final Project", details: "Reading/writing files, project planning, and building a capstone application." },
+    weeklyBreakdown: [],
+    curriculumTitle: "PixelMind Curriculum: Python",
+    curriculumOutline: [
+      {
+        title: "Intro To Python & IDE Intro",
+        link: { label: "PyCharm Community Edition", url: "https://www.jetbrains.com/pycharm/download/?section=windows" },
+        subtopics: ["Printing", "Input"],
+      },
+      {
+        title: "Data Types & Basic Commands",
+        subtopics: ["Comments", "Variables", "Data Types", "Numbers", "Casting", "Strings", "String Formatting", "Concatenation", "Booleans", "Operators"],
+      },
+      {
+        title: "Sample Program: Calculator",
+      },
+      {
+        title: "If & Else Statements",
+      },
+      {
+        title: "Managing Data",
+        subtopics: ["Arrays", "Lists", "Tuples", "Sets", "Dictionaries"],
+      },
+      {
+        title: "Loops",
+        subtopics: ["While Loops", "For Loops"],
+      },
+      {
+        title: "Functions",
+        subtopics: ["Functions", "Scope", "Modules"],
+      },
+      {
+        title: "Object-Oriented Programming",
+        subtopics: ["Classes/Objects", "Inheritance", "Polymorphism", "Iterators"],
+      },
+      {
+        title: "Important Library Classes",
+        subtopics: ["Dates", "Math (review)", "JSON", "RegEx", "PIP"],
+      },
+      {
+        title: "Lambda",
+      },
+      {
+        title: "Match",
+      },
+      {
+        title: "Python: Your Future",
+      },
     ],
+    disclaimer: "This class does not teach machine learning or AI topics, but rather introduces students to Python, a language that is commonly used for machine learning.",
     prerequisites: [
       "No prior programming experience required",
       "Basic computer literacy (typing, navigating files)",

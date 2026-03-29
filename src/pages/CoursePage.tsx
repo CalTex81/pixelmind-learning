@@ -94,29 +94,69 @@ const CoursePage = () => {
           </ul>
         </Section>
 
-        {/* Weekly Breakdown */}
-        <Section title="Weekly Breakdown" delay={0.4}>
-          <div className="grid md:grid-cols-2 gap-4">
-            {course.weeklyBreakdown.map((w, i) => (
-              <div
-                key={i}
-                className="glass rounded-lg p-4 border border-border/50"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-xs font-heading uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded">
-                    {w.week}
-                  </span>
-                  <h4 className="font-heading font-semibold text-foreground text-sm">
-                    {w.topic}
+        {/* Course Outline / Weekly Breakdown */}
+        {course.curriculumOutline && course.curriculumOutline.length > 0 ? (
+          <Section title={course.curriculumTitle || "The Course Outline"} delay={0.4}>
+            <div className="space-y-4">
+              {course.curriculumOutline.map((section, i) => (
+                <div key={i} className="glass rounded-lg p-4 border border-border/50">
+                  <h4 className="font-heading font-semibold text-foreground mb-1">
+                    {section.title}
                   </h4>
+                  {section.link && (
+                    <a
+                      href={section.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary text-xs hover:text-primary/80 transition-colors underline underline-offset-2"
+                    >
+                      {section.link.label} →
+                    </a>
+                  )}
+                  {section.subtopics && section.subtopics.length > 0 && (
+                    <ul className="mt-2 grid sm:grid-cols-2 gap-x-6 gap-y-1">
+                      {section.subtopics.map((sub, j) => (
+                        <li key={j} className="flex items-center gap-2 text-muted-foreground text-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0" />
+                          {sub}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {w.details}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Section>
+              ))}
+              {course.disclaimer && (
+                <div className="glass rounded-lg p-4 border border-accent/30 mt-4">
+                  <p className="text-xs text-accent font-heading uppercase tracking-wider mb-1">Disclaimer</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{course.disclaimer}</p>
+                </div>
+              )}
+            </div>
+          </Section>
+        ) : course.weeklyBreakdown.length > 0 ? (
+          <Section title="Weekly Breakdown" delay={0.4}>
+            <div className="grid md:grid-cols-2 gap-4">
+              {course.weeklyBreakdown.map((w, i) => (
+                <div
+                  key={i}
+                  className="glass rounded-lg p-4 border border-border/50"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-xs font-heading uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded">
+                      {w.week}
+                    </span>
+                    <h4 className="font-heading font-semibold text-foreground text-sm">
+                      {w.topic}
+                    </h4>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {w.details}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Section>
+        ) : null}
 
         {/* Prerequisites */}
         <Section title="Prerequisites" delay={0.5}>
