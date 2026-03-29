@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import PixelParticles from "./PixelParticles";
-import NeuralBrainSVG from "./NeuralBrainSVG";
+import AnimatedLogo from "./AnimatedLogo";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
@@ -43,9 +43,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
         >
-          <div className="animate-float">
-            <NeuralBrainSVG />
-          </div>
+          <AnimatedLogo />
         </motion.div>
       </div>
 
