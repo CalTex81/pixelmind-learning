@@ -21,6 +21,10 @@ const parseFeed = (data: any): BlogPost[] => {
       const rawSummary = entry.summary?.$t ? strip(entry.summary.$t) : "";
       const rawContent = entry.content?.$t ? strip(entry.content.$t) : "";
       let cleanSummary = rawSummary.length > 20 ? rawSummary : rawContent;
+      
+      // Add newline after dashed separator
+      cleanSummary = cleanSummary.replace(/(---+) /g, "$1\n");
+
       if (!cleanSummary) cleanSummary = "A new story from Within the Pixel.";
       // Trim to ~220 chars ending at a word boundary
       if (cleanSummary.length > 220) {
