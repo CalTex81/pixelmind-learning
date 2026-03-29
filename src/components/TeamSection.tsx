@@ -95,7 +95,7 @@ const TeamSection = () => {
               <p className="text-xs text-primary font-display uppercase tracking-wider mb-3">
                 {member.role}
               </p>
-              <p className="text-muted-foreground text-xs leading-relaxed mb-4">
+              <p className="text-muted-foreground text-xs leading-relaxed mb-4 shadow-md">
                 {member.bio}
               </p>
               <div className="flex justify-center gap-3">
