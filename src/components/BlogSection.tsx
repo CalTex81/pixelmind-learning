@@ -37,11 +37,22 @@ const BlogSection = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://withinthepixel.blogspot.com/feeds/posts/default?alt=json&max-results=7")
-      .then((r) => r.json())
-      .then((data) => setPosts(parseFeed(data)))
-      .catch(() => setPosts([]))
-      .finally(() => setLoading(false));
+    const callbackName = `blogger_cb_${Date.now()}`;
+    const script = document.createElement("script");
+    script.src = `https://withinthepixel.blogspot.com/feeds/posts/default?alt=json-in-script&callback=${callbackName}&max-results=7`;
+    (window as any)[callbackName] = (data: any) => {
+      setPosts(parseFeed(data));
+      setLoading(false);
+      delete (window as any)[callbackName];
+      script.remove();
+    };
+    script.onerror = () => {
+      setPosts([]);
+      setLoading(false);
+      delete (window as any)[callbackName];
+      script.remove();
+    };
+    document.head.appendChild(script);
   }, []);
 
   const featured = posts[0];
