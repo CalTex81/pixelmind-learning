@@ -43,9 +43,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
         >
-          <div className="animate-float">
-            <NeuralBrainSVG />
-          </div>
+          <AnimatedLogo />
         </motion.div>
       </div>
 
