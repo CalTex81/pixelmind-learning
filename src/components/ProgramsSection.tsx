@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Code, Gamepad2, Palette, Brain, Cpu, Globe } from "lucide-react";
+import { Code, Box, BarChart3, Trophy, Calculator } from "lucide-react";
 
 type Difficulty = "All" | "Beginner" | "Intermediate" | "Advanced";
 
@@ -14,46 +14,39 @@ interface Program {
 
 const programs: Program[] = [
   {
-    title: "Code Explorers",
-    description: "Learn the fundamentals of programming through fun, interactive projects using Scratch and Python.",
+    title: "Python 101",
+    description: "Learn the fundamentals of Python through hands-on projects, problem-solving, and real-world applications.",
     difficulty: "Beginner",
-    ageRange: "Ages 8–12",
+    ageRange: "Ages 11–15",
     icon: <Code className="w-8 h-8" />,
   },
   {
-    title: "Game Lab",
-    description: "Design and build your own video games using Unity and Godot. Bring your wildest ideas to life!",
+    title: "Intro to Computer-Aided Design (CAD)",
+    description: "Explore 3D modeling, engineering design principles, and CAD tools used in modern product development.",
     difficulty: "Intermediate",
     ageRange: "Ages 12–16",
-    icon: <Gamepad2 className="w-8 h-8" />,
+    icon: <Box className="w-8 h-8" />,
   },
   {
-    title: "Digital Canvas",
-    description: "Explore digital art, animation, and creative coding with Processing and p5.js.",
-    difficulty: "Beginner",
-    ageRange: "Ages 10–14",
-    icon: <Palette className="w-8 h-8" />,
-  },
-  {
-    title: "AI Foundations",
-    description: "Dive into artificial intelligence and machine learning with hands-on experiments and ethical discussions.",
-    difficulty: "Advanced",
-    ageRange: "Ages 14–18",
-    icon: <Brain className="w-8 h-8" />,
-  },
-  {
-    title: "Web Builders",
-    description: "Create stunning websites from scratch using HTML, CSS, JavaScript, and modern frameworks.",
+    title: "Data Science Exploration / Basics of Machine Learning",
+    description: "Discover data analysis, visualization, and introductory machine learning concepts using beginner-friendly tools.",
     difficulty: "Intermediate",
-    ageRange: "Ages 12–17",
-    icon: <Globe className="w-8 h-8" />,
+    ageRange: "Ages 13–17",
+    icon: <BarChart3 className="w-8 h-8" />,
   },
   {
-    title: "Robotics Workshop",
-    description: "Build and program robots using Arduino and Raspberry Pi. Perfect for hands-on learners!",
+    title: "ACSL Bootcamp",
+    description: "Prepare for the American Computer Science League with focused lessons on Boolean algebra, data structures, and FSAs.",
     difficulty: "Advanced",
     ageRange: "Ages 13–18",
-    icon: <Cpu className="w-8 h-8" />,
+    icon: <Trophy className="w-8 h-8" />,
+  },
+  {
+    title: "Fundamentals of Algebra (ALG1)",
+    description: "Master foundational algebra concepts including equations, functions, graphing, and problem-solving strategies.",
+    difficulty: "Beginner",
+    ageRange: "Ages 11–14",
+    icon: <Calculator className="w-8 h-8" />,
   },
 ];
 
