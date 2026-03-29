@@ -1,5 +1,11 @@
 import { Code, Box, BarChart3, Trophy, Calculator } from "lucide-react";
 
+export interface CurriculumSection {
+  title: string;
+  subtopics?: string[];
+  link?: { label: string; url: string };
+}
+
 export interface Program {
   title: string;
   slug: string;
@@ -10,6 +16,9 @@ export interface Program {
   overview: string;
   learningObjectives: string[];
   weeklyBreakdown: { week: string; topic: string; details: string }[];
+  curriculumOutline?: CurriculumSection[];
+  curriculumTitle?: string;
+  disclaimer?: string;
   prerequisites: string[];
   toolsSoftware: string[];
   outcomes: string[];
