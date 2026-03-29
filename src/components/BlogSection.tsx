@@ -1,45 +1,61 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, User } from "lucide-react";
 
 interface BlogPost {
   title: string;
-  subtitle: string;
+  summary: string;
   author: string;
   date: string;
-  featured?: boolean;
+  url: string;
 }
 
-const posts: BlogPost[] = [
-  {
-    title: "Why Every Kid Should Learn to Code",
-    subtitle: "Coding isn't just about computers — it's about thinking, creating, and solving problems.",
-    author: "Maya Chen",
-    date: "Mar 15, 2026",
-    featured: true,
-  },
-  {
-    title: "Inside Our Game Lab: Student Spotlight",
-    subtitle: "Meet the young developers who built their first indie game in just 8 weeks.",
-    author: "Jordan Ellis",
-    date: "Mar 8, 2026",
-  },
-  {
-    title: "The Future of Creative Technology Education",
-    subtitle: "How blending art and code is reshaping what it means to learn CS.",
-    author: "Dr. Amara Osei",
-    date: "Feb 28, 2026",
-  },
-  {
-    title: "5 Projects Our Students Built This Month",
-    subtitle: "From chatbots to pixel art generators — see what our community created.",
-    author: "Liam Torres",
-    date: "Feb 20, 2026",
-  },
-];
+const parseFeed = (data: any): BlogPost[] => {
+  try {
+    const entries = data?.feed?.entry;
+    if (!Array.isArray(entries)) return [];
+    return entries.map((entry: any) => {
+      const link = entry.link?.find((l: any) => l.rel === "alternate")?.href || "#";
+      const summary = entry.summary?.$t || entry.content?.$t?.replace(/<[^>]*>/g, "").slice(0, 160) || "";
+      const published = entry.published?.$t;
+      const date = published ? new Date(published).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "";
+      return {
+        title: entry.title?.$t || "Untitled",
+        summary: summary.replace(/<[^>]*>/g, "").slice(0, 160),
+        author: entry.author?.[0]?.name?.$t || "PixelMind",
+        date,
+        url: link,
+      };
+    });
+  } catch {
+    return [];
+  }
+};
 
 const BlogSection = () => {
-  const featured = posts.find((p) => p.featured);
-  const rest = posts.filter((p) => !p.featured);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://withinthepixel.blogspot.com/feeds/posts/default?alt=json&max-results=7")
+      .then((r) => r.json())
+      .then((data) => setPosts(parseFeed(data)))
+      .catch(() => setPosts([]))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const featured = posts[0];
+  const rest = posts.slice(1);
+
+  const Placeholder = ({ text }: { text: string }) => (
+    <motion.div
+      className="glass rounded-xl p-8 border border-secondary/30 flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      <span className="font-heading text-muted-foreground text-sm animate-pulse">{text}</span>
+    </motion.div>
+  );
 
   return (
     <section id="blog" className="relative py-24">
@@ -58,50 +74,64 @@ const BlogSection = () => {
           </p>
         </motion.div>
 
-        {/* Featured post */}
-        {featured && (
-          <motion.div
-            className="glass rounded-xl p-8 mb-10 border border-secondary/30 cursor-pointer group transition-all duration-300 hover:glow-purple"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="font-heading text-xs uppercase tracking-widest text-accent mb-3 inline-block">
-              Featured
-            </span>
-            <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-secondary transition-colors">
-              {featured.title}
-            </h3>
-            <p className="text-muted-foreground mb-4 max-w-2xl">{featured.subtitle}</p>
-            <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><User size={12} /> {featured.author}</span>
-              <span className="flex items-center gap-1"><Calendar size={12} /> {featured.date}</span>
-            </div>
-          </motion.div>
-        )}
+        {loading ? (
+          <Placeholder text="Loading posts…" />
+        ) : posts.length === 0 ? (
+          <Placeholder text="No posts available" />
+        ) : (
+          <>
+            {/* Featured post */}
+            {featured && (
+              <motion.a
+                href={featured.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass rounded-xl p-8 mb-10 border border-secondary/30 cursor-pointer group transition-all duration-300 hover:glow-purple block"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <span className="font-heading text-xs uppercase tracking-widest text-accent mb-3 inline-block">
+                  Featured
+                </span>
+                <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-secondary transition-colors">
+                  {featured.title}
+                </h3>
+                <p className="text-muted-foreground mb-4 max-w-2xl">{featured.summary}</p>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span className="flex items-center gap-1"><User size={12} /> {featured.author}</span>
+                  <span className="flex items-center gap-1"><Calendar size={12} /> {featured.date}</span>
+                </div>
+              </motion.a>
+            )}
 
-        {/* Post grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {rest.map((post, i) => (
-            <motion.article
-              key={post.title}
-              className="glass rounded-xl p-6 cursor-pointer group transition-all duration-300 hover:glow-purple"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <h3 className="font-heading text-lg font-bold text-foreground mb-2 group-hover:text-secondary transition-colors">
-                {post.title}
-              </h3>
-              <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{post.subtitle}</p>
-              <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1"><User size={12} /> {post.author}</span>
-                <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+            {/* Post grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rest.map((post, i) => (
+                <motion.a
+                  key={post.url}
+                  href={post.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass rounded-xl p-6 cursor-pointer group transition-all duration-300 hover:glow-purple block"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <h3 className="font-heading text-lg font-bold text-foreground mb-2 group-hover:text-secondary transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{post.summary}</p>
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                    <span className="flex items-center gap-1"><User size={12} /> {post.author}</span>
+                    <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
