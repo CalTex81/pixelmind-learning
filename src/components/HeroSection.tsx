@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import PixelParticles from "./PixelParticles";
-import NeuralBrainSVG from "./NeuralBrainSVG";
+import AnimatedLogo from "./AnimatedLogo";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
