@@ -37,9 +37,7 @@ const PixelParticles = () => {
     });
 
     for (let i = 0; i < 60; i++) {
-      const p = createParticle();
-      p.y = Math.random() * canvas.height;
-      particles.push(p);
+      particles.push(createParticle());
     }
 
     const draw = () => {
