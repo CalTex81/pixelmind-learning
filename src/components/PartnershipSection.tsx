@@ -1,13 +1,7 @@
 import { motion } from "framer-motion";
 import { Award } from "lucide-react";
 
-const partners = [
-  "Future Leaders Initiative",
-  "Code.org",
-  "National Science Foundation",
-  "Google for Education",
-  "Mozilla Foundation",
-];
+const partners = ["Future Leaders Initiative"];
 
 const PartnershipSection = () => {
   return (
