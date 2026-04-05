@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { programs } from "@/data/programs";
 import PixelGrid from "@/components/PixelGrid";
 import Navbar from "@/components/Navbar";
@@ -230,6 +231,20 @@ const CoursePage = () => {
             ))}
           </ul>
         </Section>
+
+        {/* Signup CTA */}
+        <motion.div
+          className="text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={sectionVariants}
+          transition={{ delay: 0.8 }}
+        >
+          <Button variant="glow" size="lg" className="text-base px-8 py-6 cursor-default opacity-80" disabled>
+            Signups Coming Soon
+          </Button>
+        </motion.div>
       </main>
       <Footer />
     </div>
