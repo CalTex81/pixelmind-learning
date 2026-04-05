@@ -6,6 +6,19 @@ import PixelGrid from "@/components/PixelGrid";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+const toolIcons: Record<string, string> = {
+  "PyCharm": "https://resources.jetbrains.com/storage/products/company/brand/logos/PyCharm_icon.svg",
+  "VS Code": "https://code.visualstudio.com/assets/images/code-stable.png",
+  "Onshape": "https://www.onshape.com/global-assets/img/favicons/favicon-32x32.png",
+  "Tinkercad": "https://www.tinkercad.com/favicon.ico",
+  "Google Colab": "https://colab.research.google.com/img/colab_favicon_256px.png",
+  "Jupyter Notebook": "https://jupyter.org/assets/favicons/apple-touch-icon-152x152.png",
+  "Python 3.x": "https://www.python.org/static/favicon.ico",
+  "ACSL Website": "https://www.acsl.org/favicon.ico",
+  "Desmos": "https://www.desmos.com/assets/img/apps/desmos.png",
+  "GeoGebra": "https://www.geogebra.org/favicon.ico",
+};
+
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
