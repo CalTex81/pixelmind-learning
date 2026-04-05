@@ -53,7 +53,7 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <Button variant="glow" size="sm" asChild>
+          <Button variant="glow-outline" size="sm" asChild>
             <Link to="/join">Get Involved (For Mentors)</Link>
           </Button>
         </div>
