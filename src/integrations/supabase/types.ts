@@ -14,7 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      volunteer_signups: {
+        Row: {
+          course_other: string | null
+          created_at: string
+          experience: string
+          grade: string
+          id: string
+          name: string
+          questions: string | null
+          school: string
+          selected_courses: string[]
+          skills: string | null
+        }
+        Insert: {
+          course_other?: string | null
+          created_at?: string
+          experience: string
+          grade: string
+          id?: string
+          name: string
+          questions?: string | null
+          school: string
+          selected_courses: string[]
+          skills?: string | null
+        }
+        Update: {
+          course_other?: string | null
+          created_at?: string
+          experience?: string
+          grade?: string
+          id?: string
+          name?: string
+          questions?: string | null
+          school?: string
+          selected_courses?: string[]
+          skills?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
