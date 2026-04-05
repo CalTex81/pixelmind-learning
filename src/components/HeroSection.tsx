@@ -31,8 +31,8 @@ const HeroSection = () => {
             <Button variant="glow" size="lg" className="text-base px-8 py-6">
               Explore Programs
             </Button>
-            <Button variant="glow-outline" size="lg" className="text-base px-8 py-6">
-              Join Our Mission
+            <Button variant="glow-outline" size="lg" className="text-base px-8 py-6" asChild>
+              <Link to="/join">Join Our Mission</Link>
             </Button>
           </div>
         </motion.div>
