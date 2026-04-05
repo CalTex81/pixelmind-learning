@@ -18,33 +18,6 @@ const team: TeamMember[] = [
       { type: "linkedin", url: "#" },
     ],
   },
-  {
-    name: "Jordan Ellis",
-    role: "Head of Curriculum",
-    bio: "Game developer and educator with 10+ years of experience designing hands-on learning experiences.",
-    socials: [
-      { type: "github", url: "#" },
-      { type: "linkedin", url: "#" },
-    ],
-  },
-  {
-    name: "Dr. Amara Osei",
-    role: "Director of Research",
-    bio: "PhD in CS Education. Focused on equitable access to STEM and measuring impact in youth programs.",
-    socials: [
-      { type: "twitter", url: "#" },
-      { type: "linkedin", url: "#" },
-    ],
-  },
-  {
-    name: "Liam Torres",
-    role: "Community Manager",
-    bio: "Student advocate and community builder. Connects students with mentors and opportunities across the country.",
-    socials: [
-      { type: "twitter", url: "#" },
-      { type: "github", url: "#" },
-    ],
-  },
 ];
 
 const SocialIcon = ({ type }: { type: string }) => {
@@ -74,7 +47,7 @@ const TeamSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex justify-center gap-6">
           {team.map((member, i) => (
             <motion.div
               key={member.name}
