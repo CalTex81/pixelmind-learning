@@ -12,9 +12,10 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      <PixelGrid />
-      <TopBanner />
-      <Navbar />
+      <div className="sticky top-0 z-50">
+        <TopBanner />
+        <Navbar />
+      </div>
       <main>
         <HeroSection />
         <div className="neon-divider" />
