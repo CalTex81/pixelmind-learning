@@ -28,7 +28,12 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <Button variant="glow" size="lg" className="text-base px-8 py-6" >
+            <Button
+              variant="glow"
+              size="lg"
+              className="text-base px-8 py-6"
+              onClick={() => document.getElementById("programs")?.scrollIntoView({ behavior: "smooth" })}
+            >
               Explore Programs (For Students)
             </Button>
             <Button variant="glow-outline" size="lg" className="text-base px-8 py-6" asChild>
