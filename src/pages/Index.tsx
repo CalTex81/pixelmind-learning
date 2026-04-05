@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      <PixelGrid />
       <div className="sticky top-0 z-50">
         <TopBanner />
         <Navbar />
