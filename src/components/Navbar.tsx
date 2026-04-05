@@ -79,9 +79,6 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="glow-outline" size="sm" className="w-fit" asChild>
-              <Link to="/join">Get Involved (For Mentors)</Link>
-            </Button>
           </div>
         </div>
       )}
