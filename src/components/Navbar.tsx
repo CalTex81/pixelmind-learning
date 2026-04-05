@@ -1,23 +1,40 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Blog", href: "#blog" },
-  { label: "Partners", href: "#partners" },
-  { label: "Team", href: "#team" },
+  { label: "About", href: "/#about" },
+  { label: "Programs", href: "/#programs" },
+  { label: "Blog", href: "/#blog" },
+  { label: "Partners", href: "/#partners" },
+  { label: "Team", href: "/#team" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const hash = href.replace("/", "");
+    if (location.pathname === "/") {
+      // Already on homepage, just scroll
+      const el = document.querySelector(hash);
+      el?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Navigate to homepage with hash
+      navigate("/" + hash);
+    }
+    setIsOpen(false);
+  };
 
   return (
     <nav
@@ -26,7 +43,14 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
-        <a href="#" className="flex items-center gap-2">
+        <a
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/");
+          }}
+          className="flex items-center gap-2"
+        >
           <img
             src="https://www.pixelmindlearning.org/logo"
             alt="PixelMind Learning"
@@ -46,6 +70,7 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-sm font-display text-muted-foreground hover:text-primary transition-colors duration-200 tracking-wide uppercase"
             >
               {link.label}
@@ -71,7 +96,7 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-sm font-display text-muted-foreground hover:text-primary transition-colors py-2 tracking-wide uppercase"
               >
                 {link.label}
