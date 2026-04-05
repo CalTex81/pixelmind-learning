@@ -82,8 +82,8 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="glow" size="sm" className="w-fit">
-              Get Involved
+            <Button variant="glow" size="sm" className="w-fit" asChild>
+              <Link to="/join">Get Involved</Link>
             </Button>
           </div>
         </div>
