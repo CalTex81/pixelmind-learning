@@ -53,9 +53,6 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <Button variant="glow-outline" size="sm" asChild>
-            <Link to="/join">Get Involved (For Mentors)</Link>
-          </Button>
         </div>
 
         {/* Mobile hamburger */}
