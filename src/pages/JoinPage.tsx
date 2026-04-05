@@ -55,17 +55,20 @@ const JoinPage = () => {
 
     setSubmitting(true);
     try {
-      const { error } = await supabase.from("volunteer_signups").insert({
-        name: name.trim(),
-        grade: grade === "other" ? gradeOther.trim() : grade,
-        school: school.trim(),
-        selected_courses: selectedCourses.filter((c) => c !== "other"),
-        course_other: selectedCourses.includes("other") ? courseOther.trim() || null : null,
-        experience: experience.trim(),
-        skills: skills.trim() || null,
-        questions: questions.trim() || null,
+      const { data, error } = await supabase.functions.invoke("submit-volunteer-signup", {
+        body: {
+          name: name.trim(),
+          grade: grade === "other" ? gradeOther.trim() : grade,
+          school: school.trim(),
+          selected_courses: selectedCourses.filter((c) => c !== "other"),
+          course_other: selectedCourses.includes("other") ? courseOther.trim() || null : null,
+          experience: experience.trim(),
+          skills: skills.trim() || null,
+          questions: questions.trim() || null,
+        },
       });
       if (error) throw error;
+      if (data?.error) throw new Error(data.error);
       setSubmitted(true);
       toast({ title: "Application submitted!", description: "Thank you for your interest in volunteering with PixelMind Learning." });
     } catch (err: any) {
