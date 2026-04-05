@@ -175,22 +175,31 @@ const CoursePage = () => {
           <div className="flex flex-wrap gap-3">
             {course.toolsSoftware.map((tool, i) => {
               const link = course.toolsLinks?.[tool];
+              const iconUrl = toolIcons[tool];
+              const content = (
+                <>
+                  {iconUrl && (
+                    <img src={iconUrl} alt={tool} className="w-5 h-5 object-contain" />
+                  )}
+                  {tool}
+                </>
+              );
               return link ? (
                 <a
                   key={i}
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass px-4 py-2 rounded-lg text-sm text-foreground border border-border/50 font-heading hover:border-primary/50 hover:text-primary transition-colors"
+                  className="glass px-4 py-2 rounded-lg text-sm text-foreground border border-border/50 font-heading hover:border-primary/50 hover:text-primary transition-colors inline-flex items-center gap-2"
                 >
-                  {tool}
+                  {content}
                 </a>
               ) : (
                 <span
                   key={i}
-                  className="glass px-4 py-2 rounded-lg text-sm text-foreground border border-border/50 font-heading"
+                  className="glass px-4 py-2 rounded-lg text-sm text-foreground border border-border/50 font-heading inline-flex items-center gap-2"
                 >
-                  {tool}
+                  {content}
                 </span>
               );
             })}

@@ -41,7 +41,7 @@ const JoinPage = () => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!name.trim() || !school.trim() || (!grade && !gradeOther.trim()) || selectedCourses.length === 0 || !experience.trim()) {
