@@ -29,10 +29,10 @@ const HeroSection = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Button variant="glow" size="lg" className="text-base px-8 py-6">
-              Explore Programs
+              Explore Programs (For Students)
             </Button>
             <Button variant="glow-outline" size="lg" className="text-base px-8 py-6" asChild>
-              <Link to="/join">Join Our Mission</Link>
+              <Link to="/join">Join Our Mission (For Mentors)</Link>
             </Button>
           </div>
         </motion.div>

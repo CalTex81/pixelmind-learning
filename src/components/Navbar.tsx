@@ -54,7 +54,7 @@ const Navbar = () => {
             </a>
           ))}
           <Button variant="glow" size="sm" asChild>
-            <Link to="/join">Get Involved</Link>
+            <Link to="/join">Get Involved (For Mentors)</Link>
           </Button>
         </div>
 
@@ -83,7 +83,7 @@ const Navbar = () => {
               </a>
             ))}
             <Button variant="glow" size="sm" className="w-fit" asChild>
-              <Link to="/join">Get Involved</Link>
+              <Link to="/join">Get Involved (For Mentors)</Link>
             </Button>
           </div>
         </div>
