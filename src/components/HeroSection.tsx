@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import PixelParticles from "./PixelParticles";
 import AnimatedLogo from "./AnimatedLogo";
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -31,8 +31,8 @@ const HeroSection = () => {
             <Button variant="glow" size="lg" className="text-base px-8 py-6">
               Explore Programs
             </Button>
-            <Button variant="glow-outline" size="lg" className="text-base px-8 py-6">
-              Join Our Mission
+            <Button variant="glow-outline" size="lg" className="text-base px-8 py-6" asChild>
+              <Link to="/join">Join Our Mission</Link>
             </Button>
           </div>
         </motion.div>
