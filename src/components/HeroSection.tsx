@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import PixelParticles from "./PixelParticles";
 import AnimatedLogo from "./AnimatedLogo";
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
