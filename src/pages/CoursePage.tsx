@@ -75,19 +75,24 @@ const CoursePage = () => {
           variants={sectionVariants}
           transition={{ delay: 0.1 }}
         >
-          <div className="flex items-center gap-4 mb-2">
-            <span className="text-primary">{course.icon}</span>
-            <div>
-              <h1 className="text-3xl md:text-5xl font-heading font-bold text-primary text-glow-cyan">
-                {course.title}
-              </h1>
-              <div className="flex gap-4 mt-2 text-sm">
-                <span className="text-muted-foreground">{course.ageRange}</span>
-                <span className="text-secondary font-heading uppercase tracking-wider text-xs">
-                  {course.difficulty}
-                </span>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-2">
+            <div className="flex items-center gap-4">
+              <span className="text-primary">{course.icon}</span>
+              <div>
+                <h1 className="text-3xl md:text-5xl font-heading font-bold text-primary text-glow-cyan">
+                  {course.title}
+                </h1>
+                <div className="flex gap-4 mt-2 text-sm">
+                  <span className="text-muted-foreground">{course.ageRange}</span>
+                  <span className="text-secondary font-heading uppercase tracking-wider text-xs">
+                    {course.difficulty}
+                  </span>
+                </div>
               </div>
             </div>
+            <Button variant="glow" size="sm" className="cursor-default opacity-80 w-fit sm:ml-auto" disabled>
+              Signups Coming Soon
+            </Button>
           </div>
         </motion.div>
 
