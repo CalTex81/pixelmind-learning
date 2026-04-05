@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { programs } from "@/data/programs";
 import PixelGrid from "@/components/PixelGrid";
 import Navbar from "@/components/Navbar";
