@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,7 +41,7 @@ const JoinPage = () => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!name.trim() || !school.trim() || (!grade && !gradeOther.trim()) || selectedCourses.length === 0 || !experience.trim()) {
@@ -53,12 +54,25 @@ const JoinPage = () => {
     }
 
     setSubmitting(true);
-    // Simulate submission
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const { error } = await supabase.from("volunteer_signups").insert({
+        name: name.trim(),
+        grade: grade === "other" ? gradeOther.trim() : grade,
+        school: school.trim(),
+        selected_courses: selectedCourses.filter((c) => c !== "other"),
+        course_other: selectedCourses.includes("other") ? courseOther.trim() || null : null,
+        experience: experience.trim(),
+        skills: skills.trim() || null,
+        questions: questions.trim() || null,
+      });
+      if (error) throw error;
       setSubmitted(true);
       toast({ title: "Application submitted!", description: "Thank you for your interest in volunteering with PixelMind Learning." });
-    }, 1200);
+    } catch (err: any) {
+      toast({ title: "Submission failed", description: err.message || "Please try again later.", variant: "destructive" });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
