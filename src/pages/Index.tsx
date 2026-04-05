@@ -1,5 +1,6 @@
 import PixelGrid from "@/components/PixelGrid";
 import Navbar from "@/components/Navbar";
+import TopBanner from "@/components/TopBanner";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ProgramsSection from "@/components/ProgramsSection";
@@ -12,6 +13,7 @@ const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <PixelGrid />
+      <TopBanner />
       <Navbar />
       <main>
         <HeroSection />

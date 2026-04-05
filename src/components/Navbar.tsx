@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -53,9 +51,6 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <Button variant="glow-outline" size="sm" asChild>
-            <Link to="/join">Get Involved (For Mentors)</Link>
-          </Button>
         </div>
 
         {/* Mobile hamburger */}
@@ -82,9 +77,6 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="glow-outline" size="sm" className="w-fit" asChild>
-              <Link to="/join">Get Involved (For Mentors)</Link>
-            </Button>
           </div>
         </div>
       )}
