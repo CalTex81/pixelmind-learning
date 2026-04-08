@@ -75,7 +75,7 @@ const CoursePage = () => {
           variants={sectionVariants}
           transition={{ delay: 0.1 }}
         >
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
             <div className="flex items-center gap-4">
               <span className="text-primary">{course.icon}</span>
               <div>
@@ -90,9 +90,11 @@ const CoursePage = () => {
                 </div>
               </div>
             </div>
-            <Button variant="glow" size="sm" className="cursor-default opacity-80 w-fit sm:ml-auto" disabled>
-              Signups Coming Soon
-            </Button>
+            <Link to="/signup">
+              <Button variant="glow" size="sm" className="w-fit">
+                Sign Up Now
+              </Button>
+            </Link>
           </div>
         </motion.div>
 

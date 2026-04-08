@@ -53,6 +53,78 @@ export type Database = {
         }
         Relationships: []
       }
+      student_registrations: {
+        Row: {
+          id: string
+          first_name: string
+          last_name: string
+          email: string
+          phone: string | null
+          parent_name: string
+          parent_email: string
+          parent_phone: string
+          student_age: string
+          selected_courses: {
+            course_slug: string
+            prerequisite_ratings: {
+              [prerequisite: string]: number
+            }
+          }[]
+          experience_level: string
+          goals: string
+          how_did_you_hear: string
+          agree_to_terms: boolean
+          created_at: string
+          status: string
+        }
+        Insert: {
+          id?: string
+          first_name: string
+          last_name: string
+          email: string
+          phone?: string | null
+          parent_name: string
+          parent_email: string
+          parent_phone: string
+          student_age: string
+          selected_courses: {
+            course_slug: string
+            prerequisite_ratings: {
+              [prerequisite: string]: number
+            }
+          }[]
+          experience_level: string
+          goals: string
+          how_did_you_hear: string
+          agree_to_terms: boolean
+          created_at?: string
+          status?: string
+        }
+        Update: {
+          id?: string
+          first_name?: string
+          last_name?: string
+          email?: string
+          phone?: string | null
+          parent_name?: string
+          parent_email?: string
+          parent_phone?: string
+          student_age?: string
+          selected_courses?: {
+            course_slug: string
+            prerequisite_ratings: {
+              [prerequisite: string]: number
+            }
+          }[]
+          experience_level?: string
+          goals?: string
+          how_did_you_hear?: string
+          agree_to_terms?: boolean
+          created_at?: string
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
