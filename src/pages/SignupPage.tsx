@@ -36,7 +36,6 @@ const SignupPage = () => {
     experienceLevel: "",
     goals: "",
     howDidYouHear: "",
-    agreeToTerms: false,
   });
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -87,14 +86,6 @@ const SignupPage = () => {
       return;
     }
     
-    if (!formData.agreeToTerms) {
-      toast({
-        title: "Terms Required",
-        description: "Please agree to terms and conditions to continue.",
-        variant: "destructive",
-      });
-      return;
-    }
 
     setIsSubmitting(true);
     
@@ -118,7 +109,7 @@ const SignupPage = () => {
         experience_level: formData.experienceLevel,
         goals: formData.goals,
         how_did_you_hear: formData.howDidYouHear || null,
-        agree_to_terms: formData.agreeToTerms,
+        
         status: 'pending'
       } as any);
 
