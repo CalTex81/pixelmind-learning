@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { programs } from "@/data/programs";
 
-type Difficulty = "All" | "Beginner" | "Intermediate" | "Advanced";
+type Difficulty = "All" | "Beginner" | "Intermediate";
 
-const filters: Difficulty[] = ["All", "Beginner", "Intermediate", "Advanced"];
+const filters: Difficulty[] = ["All", "Beginner", "Intermediate"];
 
 const difficultyColor: Record<string, string> = {
   Beginner: "text-primary",
   Intermediate: "text-secondary",
-  Advanced: "text-accent",
 };
 
 const ProgramsSection = () => {
