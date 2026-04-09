@@ -122,7 +122,7 @@ const SignupPage = () => {
         title: "Registration Submitted!",
         description: "We'll be in touch within 24-48 hours with next steps.",
       });
-      navigate("/thank-you");
+      navigate("/thank-you", { state: { enrolledCourses: selectedCoursesWithRatings } });
     } catch (error) {
       setIsSubmitting(false);
       toast({
