@@ -9,6 +9,7 @@ import CoursePage from "./pages/CoursePage.tsx";
 import JoinPage from "./pages/JoinPage.tsx";
 import SignupPage from "./pages/SignupPage.tsx";
 import ThankYouPage from "./pages/ThankYouPage.tsx";
+import UnsubscribePage from "./pages/UnsubscribePage.tsx";
 
 const queryClient = new QueryClient();
 const App = () => (
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/join" element={<JoinPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/unsubscribe" element={<UnsubscribePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
