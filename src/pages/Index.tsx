@@ -24,11 +24,11 @@ const Index = () => {
         <div className="neon-divider" />
         <ProgramsSection />
         <div className="neon-divider" />
+        <TeamSection />
+        <div className="neon-divider" />
         <BlogSection />
         <div className="neon-divider" />
         <PartnershipSection />
-        <div className="neon-divider" />
-        <TeamSection />
       </main>
       <Footer />
     </div>

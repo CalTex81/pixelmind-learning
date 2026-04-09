@@ -22,7 +22,7 @@ const team: TeamMember[] = [
     ],
     grade: "Freshman",
     school: "Mission San Jose High",
-    experience: "3+ years of programming experience in Python, Java, and JavaScript. Developed multiple AI projects including machine learning models and web applications. Led programming workshops for middle school students.",
+    experience: "3+ years of programming experience in Python, Java, C++, HTML/CSS, and Javascript. Developed multiple AI projects including an ASL Translator. Placed high in 2 different hackathons and has many hours of teaching experience. Has been ranked as a finalist in ACSL for many years. Founded the Computer Applications Club in middle school and is the activities coordinator at the AI Club in high school.",
   },
 ];
 

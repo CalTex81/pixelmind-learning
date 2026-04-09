@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Award } from "lucide-react";
 
-const partners = ["Future Leaders Initiative"];
+const partners = [
+  { name: "Future Leaders Initiative", url: "https://www.futureleadersca.org/" }
+];
 
 const PartnershipSection = () => {
   return (
@@ -30,16 +32,19 @@ const PartnershipSection = () => {
 
         <div className="flex flex-wrap justify-center gap-8 items-center">
           {partners.map((partner, i) => (
-            <motion.div
-              key={partner}
-              className="glass rounded-lg px-6 py-4 font-display text-sm text-muted-foreground transition-all duration-500 hover:text-primary hover:glow-cyan cursor-default grayscale hover:grayscale-0"
+            <motion.a
+              key={partner.name}
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass rounded-lg px-6 py-4 font-display text-sm text-muted-foreground transition-all duration-500 hover:text-primary hover:glow-cyan cursor-pointer grayscale hover:grayscale-0"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              {partner}
-            </motion.div>
+              {partner.name}
+            </motion.a>
           ))}
         </div>
       </div>
