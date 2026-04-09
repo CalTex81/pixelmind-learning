@@ -109,7 +109,7 @@ const SignupPage = () => {
         experience_level: formData.experienceLevel,
         goals: formData.goals,
         how_did_you_hear: formData.howDidYouHear || null,
-        agree_to_terms: formData.agreeToTerms,
+        
         status: 'pending'
       } as any);
 
