@@ -16,7 +16,6 @@ export type Database = {
     Tables: {
       student_registrations: {
         Row: {
-          agree_to_terms: boolean
           created_at: string
           email: string
           experience_level: string
@@ -29,13 +28,12 @@ export type Database = {
           parent_name: string
           parent_phone: string
           phone: string | null
-          school: string
+          school: string | null
           selected_courses: Json
           status: string
           student_age: string
         }
         Insert: {
-          agree_to_terms?: boolean
           created_at?: string
           email: string
           experience_level: string
@@ -48,13 +46,12 @@ export type Database = {
           parent_name: string
           parent_phone: string
           phone?: string | null
-          school: string
+          school?: string | null
           selected_courses?: Json
           status?: string
           student_age: string
         }
         Update: {
-          agree_to_terms?: boolean
           created_at?: string
           email?: string
           experience_level?: string
@@ -67,7 +64,7 @@ export type Database = {
           parent_name?: string
           parent_phone?: string
           phone?: string | null
-          school?: string
+          school?: string | null
           selected_courses?: Json
           status?: string
           student_age?: string
