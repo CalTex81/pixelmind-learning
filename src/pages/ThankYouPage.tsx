@@ -72,8 +72,8 @@ const ThankYouPage = () => {
                   <span className="text-primary font-bold text-sm">3</span>
                 </div>
                 <div>
-                  <h3 className="font-medium text-foreground">Welcome Package</h3>
-                  <p className="text-sm text-muted-foreground">Get access to course materials, schedule, and preparation resources.</p>
+                  <h3 className="font-medium text-foreground">Welcome!</h3>
+                  <p className="text-sm text-muted-foreground">Gain access to the Google Classroom, where resources will be posted!</p>
                 </div>
               </div>
             </div>
@@ -93,14 +93,7 @@ const ThankYouPage = () => {
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                info@pixelmindlearning.org
-              </a>
-              <a
-                href="tel:+1234567890"
-                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                (123) 456-7890
+                pixelmindlearning@gmail.org
               </a>
             </div>
           </motion.div>

@@ -29,6 +29,7 @@ export type Database = {
           parent_name: string
           parent_phone: string
           phone: string | null
+          school: string
           selected_courses: Json
           status: string
           student_age: string
@@ -47,6 +48,7 @@ export type Database = {
           parent_name: string
           parent_phone: string
           phone?: string | null
+          school: string
           selected_courses?: Json
           status?: string
           student_age: string
@@ -65,6 +67,7 @@ export type Database = {
           parent_name?: string
           parent_phone?: string
           phone?: string | null
+          school?: string
           selected_courses?: Json
           status?: string
           student_age?: string

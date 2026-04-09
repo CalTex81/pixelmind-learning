@@ -30,6 +30,7 @@ const SignupPage = () => {
     parentEmail: "",
     parentPhone: "",
     studentAge: "",
+    school: "",
     selectedCourses: [] as string[],
     courseRatings: {} as Record<string, Record<string, number>>,
     experienceLevel: "",
@@ -112,6 +113,7 @@ const SignupPage = () => {
         parent_email: formData.parentEmail,
         parent_phone: formData.parentPhone,
         student_age: formData.studentAge,
+        school: formData.school,
         selected_courses: selectedCoursesWithRatings,
         experience_level: formData.experienceLevel,
         goals: formData.goals,
@@ -227,21 +229,31 @@ const SignupPage = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="studentAge">Student Age *</Label>
+                  <p className="text-sm text-muted-foreground mb-2">Please select your age based on how old you will be by June 1, 2026</p>
                   <Select value={formData.studentAge} onValueChange={(value) => handleInputChange("studentAge", value)} required>
                     <SelectTrigger className="bg-background/50">
                       <SelectValue placeholder="Select age range" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="10-11">10-11 years</SelectItem>
-                      <SelectItem value="11-12">11-12 years</SelectItem>
-                      <SelectItem value="12-13">12-13 years</SelectItem>
-                      <SelectItem value="13-14">13-14 years</SelectItem>
-                      <SelectItem value="14-15">14-15 years</SelectItem>
-                      <SelectItem value="15-16">15-16 years</SelectItem>
-                      <SelectItem value="16-17">16-17 years</SelectItem>
-                      <SelectItem value="17-18">17-18 years</SelectItem>
+                      <SelectItem value="10">10 years</SelectItem>
+                      <SelectItem value="11">11 years</SelectItem>
+                      <SelectItem value="12">12 years</SelectItem>
+                      <SelectItem value="13">13 years</SelectItem>
+                      <SelectItem value="14">14 years</SelectItem>
                     </SelectContent>
                   </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="school">School *</Label>
+                  <Input
+                    id="school"
+                    value={formData.school}
+                    onChange={(e) => handleInputChange("school", e.target.value)}
+                    placeholder="Enter your school name"
+                    required
+                    className="bg-background/50"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -418,28 +430,6 @@ const SignupPage = () => {
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Terms and Conditions */}
-            <Card className="glass border-border/50">
-              <CardContent className="pt-6">
-                <div className="flex items-start space-x-3">
-                  <Checkbox
-                    id="agreeToTerms"
-                    checked={formData.agreeToTerms}
-                    onCheckedChange={(checked) => handleInputChange("agreeToTerms", checked)}
-                  />
-                  <div className="space-y-1">
-                    <Label htmlFor="agreeToTerms" className="text-sm font-normal">
-                      I agree to the terms and conditions *
-                    </Label>
-                    <p className="text-xs text-muted-foreground">
-                      By submitting this form, you agree to our privacy policy and terms of service. 
-                      We will contact you within 24-48 hours with next steps for enrollment.
-                    </p>
-                  </div>
                 </div>
               </CardContent>
             </Card>
