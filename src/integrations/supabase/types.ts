@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      student_registrations: {
+        Row: {
+          agree_to_terms: boolean
+          created_at: string
+          email: string
+          experience_level: string
+          first_name: string
+          goals: string
+          how_did_you_hear: string | null
+          id: string
+          last_name: string
+          parent_email: string
+          parent_name: string
+          parent_phone: string
+          phone: string | null
+          selected_courses: Json
+          status: string
+          student_age: string
+        }
+        Insert: {
+          agree_to_terms?: boolean
+          created_at?: string
+          email: string
+          experience_level: string
+          first_name: string
+          goals: string
+          how_did_you_hear?: string | null
+          id?: string
+          last_name: string
+          parent_email: string
+          parent_name: string
+          parent_phone: string
+          phone?: string | null
+          selected_courses?: Json
+          status?: string
+          student_age: string
+        }
+        Update: {
+          agree_to_terms?: boolean
+          created_at?: string
+          email?: string
+          experience_level?: string
+          first_name?: string
+          goals?: string
+          how_did_you_hear?: string | null
+          id?: string
+          last_name?: string
+          parent_email?: string
+          parent_name?: string
+          parent_phone?: string
+          phone?: string | null
+          selected_courses?: Json
+          status?: string
+          student_age?: string
+        }
+        Relationships: []
+      }
       volunteer_signups: {
         Row: {
           course_other: string | null
@@ -50,78 +107,6 @@ export type Database = {
           school?: string
           selected_courses?: string[]
           skills?: string | null
-        }
-        Relationships: []
-      }
-      student_registrations: {
-        Row: {
-          id: string
-          first_name: string
-          last_name: string
-          email: string
-          phone: string | null
-          parent_name: string
-          parent_email: string
-          parent_phone: string
-          student_age: string
-          selected_courses: {
-            course_slug: string
-            prerequisite_ratings: {
-              [prerequisite: string]: number
-            }
-          }[]
-          experience_level: string
-          goals: string
-          how_did_you_hear: string
-          agree_to_terms: boolean
-          created_at: string
-          status: string
-        }
-        Insert: {
-          id?: string
-          first_name: string
-          last_name: string
-          email: string
-          phone?: string | null
-          parent_name: string
-          parent_email: string
-          parent_phone: string
-          student_age: string
-          selected_courses: {
-            course_slug: string
-            prerequisite_ratings: {
-              [prerequisite: string]: number
-            }
-          }[]
-          experience_level: string
-          goals: string
-          how_did_you_hear: string
-          agree_to_terms: boolean
-          created_at?: string
-          status?: string
-        }
-        Update: {
-          id?: string
-          first_name?: string
-          last_name?: string
-          email?: string
-          phone?: string | null
-          parent_name?: string
-          parent_email?: string
-          parent_phone?: string
-          student_age?: string
-          selected_courses?: {
-            course_slug: string
-            prerequisite_ratings: {
-              [prerequisite: string]: number
-            }
-          }[]
-          experience_level?: string
-          goals?: string
-          how_did_you_hear?: string
-          agree_to_terms?: boolean
-          created_at?: string
-          status?: string
         }
         Relationships: []
       }

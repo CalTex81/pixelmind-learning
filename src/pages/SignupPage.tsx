@@ -103,7 +103,7 @@ const SignupPage = () => {
         prerequisite_ratings: formData.courseRatings[courseSlug] || {}
       }));
 
-      const { error } = await supabase.from('student_registrations').insert({
+      const { error } = await supabase.from('student_registrations' as any).insert({
         first_name: formData.firstName,
         last_name: formData.lastName,
         email: formData.email,
@@ -115,10 +115,10 @@ const SignupPage = () => {
         selected_courses: selectedCoursesWithRatings,
         experience_level: formData.experienceLevel,
         goals: formData.goals,
-        how_did_you_hear: formData.howDidYouHear,
+        how_did_you_hear: formData.howDidYouHear || null,
         agree_to_terms: formData.agreeToTerms,
         status: 'pending'
-      });
+      } as any);
 
       if (error) {
         throw error;
