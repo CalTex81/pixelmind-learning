@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      student_registrations: {
+        Row: {
+          agree_to_terms: boolean
+          created_at: string
+          email: string
+          experience_level: string
+          first_name: string
+          goals: string
+          how_did_you_hear: string | null
+          id: string
+          last_name: string
+          parent_email: string
+          parent_name: string
+          parent_phone: string
+          phone: string | null
+          selected_courses: Json
+          status: string
+          student_age: string
+        }
+        Insert: {
+          agree_to_terms?: boolean
+          created_at?: string
+          email: string
+          experience_level: string
+          first_name: string
+          goals: string
+          how_did_you_hear?: string | null
+          id?: string
+          last_name: string
+          parent_email: string
+          parent_name: string
+          parent_phone: string
+          phone?: string | null
+          selected_courses?: Json
+          status?: string
+          student_age: string
+        }
+        Update: {
+          agree_to_terms?: boolean
+          created_at?: string
+          email?: string
+          experience_level?: string
+          first_name?: string
+          goals?: string
+          how_did_you_hear?: string | null
+          id?: string
+          last_name?: string
+          parent_email?: string
+          parent_name?: string
+          parent_phone?: string
+          phone?: string | null
+          selected_courses?: Json
+          status?: string
+          student_age?: string
+        }
+        Relationships: []
+      }
       volunteer_signups: {
         Row: {
           course_other: string | null
