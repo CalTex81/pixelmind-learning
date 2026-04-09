@@ -90,12 +90,14 @@ const SignupPage = () => {
     setIsSubmitting(true);
     
     try {
+      const registrationId = crypto.randomUUID();
       const selectedCoursesWithRatings = formData.selectedCourses.map(courseSlug => ({
         course_slug: courseSlug,
         prerequisite_ratings: formData.courseRatings[courseSlug] || {}
       }));
 
       const { error } = await supabase.from('student_registrations' as any).insert({
+        id: registrationId,
         first_name: formData.firstName,
         last_name: formData.lastName,
         email: formData.email,
@@ -109,7 +111,6 @@ const SignupPage = () => {
         experience_level: formData.experienceLevel,
         goals: formData.goals,
         how_did_you_hear: formData.howDidYouHear || null,
-        
         status: 'pending'
       } as any);
 
@@ -117,10 +118,33 @@ const SignupPage = () => {
         throw error;
       }
 
+      // Send welcome email with course details and calendar links
+      const courseInfoForEmail = formData.selectedCourses
+        .map(slug => programs.find(p => p.slug === slug))
+        .filter(Boolean)
+        .map(p => ({
+          title: p!.title,
+          day: p!.classSchedule?.day || '',
+          time: p!.classSchedule?.time || '',
+          dateRange: p!.classSchedule?.dateRange || '',
+        }));
+
+      supabase.functions.invoke('send-transactional-email', {
+        body: {
+          templateName: 'welcome-registration',
+          recipientEmail: formData.email,
+          idempotencyKey: `welcome-reg-${registrationId}`,
+          templateData: {
+            firstName: formData.firstName,
+            courses: courseInfoForEmail,
+          },
+        },
+      }).catch(err => console.error('Welcome email failed:', err));
+
       setIsSubmitting(false);
       toast({
         title: "Registration Submitted!",
-        description: "We'll be in touch within 24-48 hours with next steps.",
+        description: "We'll be in touch within 24-48 hours with next steps. Check your email for a welcome message!",
       });
       navigate("/thank-you", { state: { enrolledCourses: selectedCoursesWithRatings } });
     } catch (error) {
