@@ -5,8 +5,53 @@ import { Button } from "@/components/ui/button";
 import PixelGrid from "@/components/PixelGrid";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { supabase } from "@/integrations/supabase/client";
+import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { programs } from "@/data/programs";
 
 const ThankYouPage = () => {
+  const [searchParams] = useSearchParams();
+  const registrationId = searchParams.get('id');
+  const [enrolledCourses, setEnrolledCourses] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchEnrollmentData = async () => {
+      if (!registrationId) {
+        setError("No registration ID found");
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase
+          .from('student_registrations')
+          .select('selected_courses')
+          .eq('id', registrationId)
+          .single();
+
+        if (error) {
+          setError(error.message);
+        } else {
+          // Handle the data properly - selected_courses is an array
+          const courses = Array.isArray(data.selected_courses) ? data.selected_courses : [];
+          setEnrolledCourses(courses);
+        }
+      } catch (err) {
+        setError("Failed to fetch enrollment data");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchEnrollmentData();
+  }, [registrationId]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <PixelGrid />
@@ -37,6 +82,37 @@ const ThankYouPage = () => {
           <p className="text-muted-foreground text-lg mb-8">
             Thank you for registering for PixelMind Learning programs. We're excited to have you join our community!
           </p>
+
+          {/* Enrolled Courses Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="glass rounded-xl p-6 border border-border/50 mb-8"
+          >
+            <h2 className="text-xl font-heading font-semibold text-primary mb-4">Your Enrolled Courses</h2>
+            <div className="space-y-4">
+              <p className="text-muted-foreground mb-4">
+                You have successfully enrolled in the following courses:
+              </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                {enrolledCourses.map((enrolledCourse, index) => {
+                  const program = programs.find(p => p.slug === enrolledCourse.course_slug);
+                  return (
+                    <div key={index} className="glass rounded-lg p-4 border border-border/50">
+                      <h3 className="font-semibold text-foreground mb-2">{program?.title || enrolledCourse.course_slug}</h3>
+                      <p className="text-sm text-muted-foreground mb-2">
+                        <strong>Class Schedule:</strong> {program?.classSchedule ? `${program.classSchedule.day}, ${program.classSchedule.time} (${program.classSchedule.dateRange})` : 'Schedule information coming soon'}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Course materials and access information will be sent to your email.
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
 
           {/* Next Steps Card */}
           <motion.div

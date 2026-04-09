@@ -88,6 +88,26 @@ const CoursePage = () => {
                     {course.difficulty}
                   </span>
                 </div>
+                {course.classSchedule && (
+                  <div className="mt-4 p-4 bg-muted/50 rounded-lg">
+                    <h4 className="font-semibold text-foreground mb-2">
+                      Class Schedule
+                    </h4>
+                    <div className="flex items-center gap-4">
+                      <div className="text-center">
+                        <div className="text-sm text-muted-foreground">
+                          {course.classSchedule.day}
+                        </div>
+                        <div className="text-lg font-semibold text-primary">
+                          {course.classSchedule.time}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {course.classSchedule.dateRange}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <Link to="/signup">

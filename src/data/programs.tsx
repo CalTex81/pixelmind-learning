@@ -35,6 +35,11 @@ export interface Program {
   toolsSoftware: string[];
   toolsLinks?: Record<string, string>;
   outcomes: string[];
+  classSchedule?: {
+    day: string;
+    time: string;
+    dateRange: string;
+  };
 }
 
 export const programs: Program[] = [
@@ -121,6 +126,11 @@ export const programs: Program[] = [
       "A completed capstone project for their portfolio",
       "Readiness for intermediate-level courses",
     ],
+    classSchedule: {
+      day: "Mondays",
+      time: "1pm-2pm",
+      dateRange: "6/15-7/20"
+    }
   },
   {
     title: "Intro to Computer-Aided Design (CAD)",
@@ -164,6 +174,11 @@ export const programs: Program[] = [
       "A completed product prototype in their portfolio",
       "Foundation for advanced CAD and 3D printing courses",
     ],
+    classSchedule: {
+      day: "Tuesdays",
+      time: "1pm-2pm",
+      dateRange: "6/16-7/21"
+    }
   },
   {
     title: "Data Science Exploration / Basics of Machine Learning",
@@ -208,6 +223,11 @@ export const programs: Program[] = [
       "A completed data science project",
       "Foundation for advanced AI/ML coursework",
     ],
+    classSchedule: {
+      day: "Fridays",
+      time: "1pm-2pm",
+      dateRange: "6/19-7/24"
+    }
   },
     {
     title: "Fundamentals of Algebra (ALG1)",
@@ -251,5 +271,10 @@ export const programs: Program[] = [
       "Improved logical and analytical thinking",
       "Readiness for geometry and Algebra II",
     ],
+    classSchedule: {
+      day: "Thursdays",
+      time: "1pm-2pm",
+      dateRange: "6/18-7/23"
+    }
   },
 ];
