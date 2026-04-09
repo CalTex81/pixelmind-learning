@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Linkedin, X } from "lucide-react";
+import { useState } from "react";
 
 interface TeamMember {
   name: string;
   role: string;
   bio: string;
   socials: { type: string; url: string }[];
+  grade: string;
+  school: string;
+  experience: string;
 }
 
 const team: TeamMember[] = [
@@ -14,22 +18,24 @@ const team: TeamMember[] = [
     role: "Founder & Executive Director",
     bio: "Freshman at Mission San Jose High | Passionate Computer Science & Artificial Intelligence Student",
     socials: [
-      { type: "twitter", url: "#" },
       { type: "linkedin", url: "#" },
     ],
+    grade: "Freshman",
+    school: "Mission San Jose High",
+    experience: "3+ years of programming experience in Python, Java, and JavaScript. Developed multiple AI projects including machine learning models and web applications. Led programming workshops for middle school students.",
   },
 ];
 
 const SocialIcon = ({ type }: { type: string }) => {
   switch (type) {
-    case "twitter": return <Twitter size={16} />;
     case "linkedin": return <Linkedin size={16} />;
-    case "github": return <Github size={16} />;
     default: return null;
   }
 };
 
 const TeamSection = () => {
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+
   return (
     <section id="team" className="relative py-24">
       <div className="container mx-auto px-4">
@@ -51,12 +57,13 @@ const TeamSection = () => {
           {team.map((member, i) => (
             <motion.div
               key={member.name}
-              className="glass rounded-xl p-6 text-center group transition-all duration-300 hover:glow-magenta pixel-border"
+              className="glass rounded-xl p-6 text-center group transition-all duration-300 hover:glow-magenta pixel-border cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ scale: 1.03 }}
+              onClick={() => setSelectedMember(member)}
             >
               {/* Avatar placeholder */}
               <div className="w-20 h-20 mx-auto mb-4 rounded-lg bg-muted flex items-center justify-center font-heading text-2xl text-primary font-bold">
@@ -78,6 +85,7 @@ const TeamSection = () => {
                     href={s.url}
                     className="text-muted-foreground hover:text-primary transition-colors"
                     aria-label={s.type}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <SocialIcon type={s.type} />
                   </a>
@@ -87,6 +95,76 @@ const TeamSection = () => {
           ))}
         </div>
       </div>
+
+      {/* Modal for team member details */}
+      {selectedMember && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedMember(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="glass rounded-xl p-8 max-w-md w-full relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedMember(null)}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="flex flex-col items-center mb-6">
+              <div className="w-24 h-24 rounded-lg bg-muted flex items-center justify-center font-heading text-3xl text-primary font-bold mb-4">
+                {selectedMember.name.split(" ").map((n) => n[0]).join("")}
+              </div>
+              <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                {selectedMember.name}
+              </h3>
+              <p className="text-primary font-display uppercase tracking-wider text-sm mb-4">
+                {selectedMember.role}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold text-foreground mb-1">Grade</h4>
+                <p className="text-muted-foreground">{selectedMember.grade}</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-1">School</h4>
+                <p className="text-muted-foreground">{selectedMember.school}</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-1">Experience</h4>
+                <p className="text-muted-foreground text-sm leading-relaxed">{selectedMember.experience}</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-1">Bio</h4>
+                <p className="text-muted-foreground text-sm leading-relaxed">{selectedMember.bio}</p>
+              </div>
+            </div>
+
+            <div className="flex justify-center gap-3 mt-6">
+              {selectedMember.socials.map((s) => (
+                <a
+                  key={s.type}
+                  href={s.url}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label={s.type}
+                >
+                  <SocialIcon type={s.type} />
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   );
 };
