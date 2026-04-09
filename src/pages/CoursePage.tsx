@@ -147,29 +147,6 @@ const CoursePage = () => {
               ))}
             </div>
           </Section>
-        ) : course.weeklyBreakdown.length > 0 ? (
-          <Section title="Weekly Breakdown" delay={0.4}>
-            <div className="grid md:grid-cols-2 gap-4">
-              {course.weeklyBreakdown.map((w, i) => (
-                <div
-                  key={i}
-                  className="glass rounded-lg p-4 border border-border/50"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-heading uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded">
-                      {w.week}
-                    </span>
-                    <h4 className="font-heading font-semibold text-foreground text-sm">
-                      {w.topic}
-                    </h4>
-                  </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {w.details}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Section>
         ) : null}
 
         {/* Prerequisites */}
