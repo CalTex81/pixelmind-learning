@@ -22,7 +22,7 @@ export interface Program {
   title: string;
   slug: string;
   description: string;
-  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  difficulty: "Beginner" | "Intermediate";
   ageRange: string;
   icon: React.ReactNode;
   overview: string;
@@ -209,50 +209,7 @@ export const programs: Program[] = [
       "Foundation for advanced AI/ML coursework",
     ],
   },
-  {
-    title: "ACSL Bootcamp",
-    slug: "acsl-bootcamp",
-    description:
-      "Prepare for the American Computer Science League with focused lessons on Boolean algebra, data structures, and FSAs.",
-    difficulty: "Advanced",
-    ageRange: "Ages 12-14",
-    icon: <Trophy className="w-8 h-8" />,
-    overview:
-      "The ACSL Bootcamp is an intensive preparation course for students competing in the American Computer Science League. Covering all major ACSL topics, this course blends theory with extensive practice problems to sharpen competitive programming skills and deepen CS knowledge.",
-    learningObjectives: [
-      "Master Boolean algebra and digital logic",
-      "Understand and trace Finite State Automata (FSAs)",
-      "Work with number systems (binary, octal, hex)",
-      "Implement graph theory algorithms",
-      "Solve LISP and prefix/postfix expression problems",
-      "Complete timed practice contests",
-    ],
-    weeklyBreakdown: [
-      { week: 1, title: "Week 1: Number Systems & Bit Manipulation", description: "Binary, octal, hexadecimal conversions, bitwise operations.", topics: ["Binary to decimal conversion", "Octal and hexadecimal systems", "Bitwise operations (AND, OR, XOR, NOT)", "Two's complement representation", "Arithmetic in different bases", "ACSL problem-solving strategies"], project: "Solve number system conversion problems under time constraints" },
-      { week: 2, title: "Week 2: Boolean Algebra & Logic Gates", description: "Logic gates, truth tables, simplification, De Morgan's laws.", topics: ["Truth tables and logic gates", "Boolean expressions and simplification", "De Morgan's laws", "Karnaugh maps", "Logic circuit design", "ACSL Boolean algebra problems"], project: "Design and simplify complex Boolean expressions" },
-      { week: 3, title: "Week 3: Data Structures & Algorithms", description: "Stacks, queues, trees, and graph representations.", topics: ["Stacks and queues implementation", "Binary trees and traversals", "Graph representations", "Recursion fundamentals", "Big O notation basics", "ACSL data structure problems"], project: "Implement and analyze basic data structures" },
-      { week: 4, title: "Week 4: Finite State Automata (FSAs)", description: "Designing and tracing finite state automata, pattern matching.", topics: ["FSA design principles", "State transitions and diagrams", "Pattern recognition", "Regular expressions basics", "Deterministic vs non-deterministic FSAs", "ACSL FSA problem strategies"], project: "Create and trace finite state automata for pattern matching" },
-      { week: 5, title: "Week 5: LISP & Functional Programming", description: "Prefix notation, recursive evaluation, LISP-style problems.", topics: ["LISP syntax and evaluation", "Prefix and postfix notation", "Recursive functions", "List processing in LISP", "Functional programming concepts", "ACSL LISP-style problems"], project: "Solve LISP evaluation problems and recursive challenges" },
-      { week: 6, title: "Week 6: Mock Contests & Final Review", description: "Full-length practice tests, timed challenges, and review sessions.", topics: ["Timed practice tests", "ACSL contest format", "Problem-solving under pressure", "Review of all topics", "Test-taking strategies", "Final competition simulation"], project: "Complete full-length ACSL mock contest with all problem types" }
-    ],
-    prerequisites: [
-      "Proficiency in at least one programming language",
-      "Strong algebra and logic skills",
-      "Prior experience with basic data structures recommended",
-    ],
-    toolsSoftware: [
-      "Python or Java for programming challenges",
-      "ACSL practice problem archive",
-      "Custom practice platform",
-    ],
-    outcomes: [
-      "Readiness to compete in all ACSL contest rounds",
-      "Deep understanding of CS theory topics",
-      "Improved problem-solving speed and accuracy",
-      "Competitive programming portfolio",
-    ],
-  },
-  {
+    {
     title: "Fundamentals of Algebra (ALG1)",
     slug: "fundamentals-of-algebra",
     description:
