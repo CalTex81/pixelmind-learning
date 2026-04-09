@@ -1,9 +1,21 @@
 import { Code, Box, BarChart3, Trophy, Calculator } from "lucide-react";
 
 export interface CurriculumSection {
+  week?: number;
   title: string;
   subtopics?: string[];
+  topics?: string[];
+  project?: string;
+  description?: string;
   link?: { label: string; url: string };
+}
+
+export interface WeeklyBreakdown {
+  week: number;
+  title: string;
+  description: string;
+  topics: string[];
+  project: string;
 }
 
 export interface Program {
@@ -15,9 +27,9 @@ export interface Program {
   icon: React.ReactNode;
   overview: string;
   learningObjectives: string[];
-  weeklyBreakdown: { week: string; topic: string; details: string }[];
-  curriculumOutline?: CurriculumSection[];
+  weeklyBreakdown: WeeklyBreakdown[];
   curriculumTitle?: string;
+  curriculumOutline?: CurriculumSection[];
   disclaimer?: string;
   prerequisites: string[];
   toolsSoftware: string[];
@@ -32,7 +44,7 @@ export const programs: Program[] = [
     description:
       "Learn the fundamentals of Python through hands-on projects, problem-solving, and real-world applications.",
     difficulty: "Beginner",
-    ageRange: "Ages 11–15",
+    ageRange: "Ages 9-14",
     icon: <Code className="w-8 h-8" />,
     overview:
       "Python 101 introduces young learners to the world of programming using Python — one of the most popular and versatile languages in the world. Through interactive exercises, mini-projects, and guided challenges, students build a solid foundation in computational thinking and software development.",
@@ -44,54 +56,51 @@ export const programs: Program[] = [
       "Debug and troubleshoot code independently",
       "Build a capstone project from scratch",
     ],
-    weeklyBreakdown: [],
-    curriculumTitle: "PixelMind Curriculum: Python",
-    curriculumOutline: [
+    weeklyBreakdown: [
       {
-        title: "Intro To Python & IDE Intro",
-        link: { label: "PyCharm Community Edition", url: "https://www.jetbrains.com/pycharm/download/?section=windows" },
-        subtopics: ["Printing", "Input"],
+        week: 1,
+        title: "Week 1: Python Fundamentals & First Program",
+        description: "Introduction to Python programming language, setting up development environment, and writing your first program.",
+        topics: ["Introduction to Python", "Setting up PyCharm IDE", "Your first program", "Print statements and basic output", "Getting user input", "Comments and code organization"],
+        project: "Create a simple greeting program that asks for user's name and displays a welcome message"
       },
       {
-        title: "Data Types & Basic Commands",
-        subtopics: ["Comments", "Variables", "Data Types", "Numbers", "Casting", "Strings", "String Formatting", "Concatenation", "Booleans", "Operators"],
+        week: 2,
+        title: "Week 2: Variables, Data Types & Operations",
+        description: "Understanding how to store and manipulate different types of data in Python.",
+        topics: ["Variables and naming conventions", "Numbers (integers and floats)", "Strings and string formatting", "Boolean values", "Basic arithmetic operators", "Type casting and conversion"],
+        project: "Build a calculator program that performs basic mathematical operations"
       },
       {
-        title: "Sample Program: Calculator",
+        week: 3,
+        title: "Week 3: Control Flow & Decision Making",
+        description: "Learning how programs make decisions and respond to different conditions.",
+        topics: ["If, elif, and else statements", "Comparison operators", "Logical operators (and, or, not)", "Nested conditions", "Error handling with try-except"],
+        project: "Create a quiz program that asks questions and provides feedback based on answers"
       },
       {
-        title: "If & Else Statements",
+        week: 4,
+        title: "Week 4: Data Structures & Loops",
+        description: "Exploring ways to organize data and repeat actions efficiently.",
+        topics: ["Lists and list operations", "Tuples and their uses", "Sets and set operations", "Dictionaries and key-value pairs", "For loops and iteration", "While loops and repetition"],
+        project: "Develop a contact book program that stores and manages multiple contacts"
       },
       {
-        title: "Managing Data",
-        subtopics: ["Arrays", "Lists", "Tuples", "Sets", "Dictionaries"],
+        week: 5,
+        title: "Week 5: Functions & Modular Programming",
+        description: "Breaking down complex problems into reusable code blocks.",
+        topics: ["Creating and calling functions", "Parameters and arguments", "Return values", "Scope and global variables", "Importing modules", "Built-in Python functions"],
+        project: "Build a text-based adventure game with multiple functions for different game mechanics"
       },
       {
-        title: "Loops",
-        subtopics: ["While Loops", "For Loops"],
-      },
-      {
-        title: "Functions",
-        subtopics: ["Functions", "Scope", "Modules"],
-      },
-      {
-        title: "Object-Oriented Programming",
-        subtopics: ["Classes/Objects", "Inheritance", "Polymorphism", "Iterators"],
-      },
-      {
-        title: "Important Library Classes",
-        subtopics: ["Dates", "Math (review)", "JSON", "RegEx", "PIP"],
-      },
-      {
-        title: "Lambda",
-      },
-      {
-        title: "Match",
-      },
-      {
-        title: "Python: Your Future",
-      },
+        week: 6,
+        title: "Week 6: Object-Oriented Programming & Final Project",
+        description: "Introduction to object-oriented concepts and creating a comprehensive final project.",
+        topics: ["Classes and objects", "Methods and attributes", "Inheritance basics", "Putting it all together", "Project planning and structure", "Code debugging and testing"],
+        project: "Create a comprehensive program combining all learned concepts (student chooses project)"
+      }
     ],
+    curriculumTitle: "PixelMind Curriculum: Python",
     disclaimer: "This class does not teach machine learning or AI topics, but rather introduces students to Python, a language that is commonly used for machine learning.",
     prerequisites: [
       "No prior programming experience required",
@@ -119,7 +128,7 @@ export const programs: Program[] = [
     description:
       "Explore 3D modeling, engineering design principles, and CAD tools used in modern product development.",
     difficulty: "Intermediate",
-    ageRange: "Ages 12–16",
+    ageRange: "Ages 12-14",
     icon: <Box className="w-8 h-8" />,
     overview:
       "This course introduces students to the world of Computer-Aided Design, teaching them how to create precise 3D models, understand engineering drawings, and think like a product designer. Students will use industry-standard tools to bring their ideas from concept to a digital prototype.",
@@ -132,12 +141,12 @@ export const programs: Program[] = [
       "Design a final product prototype",
     ],
     weeklyBreakdown: [
-      { week: "Week 1", topic: "Introduction to CAD", details: "Overview of CAD in industry, software setup, navigating the workspace." },
-      { week: "Week 2", topic: "2D Sketching Fundamentals", details: "Lines, arcs, circles, constraints, and dimensioning." },
-      { week: "Week 3", topic: "3D Modeling Basics", details: "Extrude, revolve, fillet, chamfer, and boolean operations." },
-      { week: "Week 4", topic: "Advanced Features", details: "Patterns, mirrors, shells, and lofts for complex geometry." },
-      { week: "Week 5", topic: "Assemblies", details: "Combining parts, applying joints and constraints, motion simulation." },
-      { week: "Week 6", topic: "Final Project & Presentation", details: "Designing, modeling, and presenting a complete product prototype." },
+      { week: 1, title: "Week 1: Introduction to CAD & Software Setup", description: "Overview of CAD in industry, software setup, navigating the workspace.", topics: ["Overview of CAD in industry", "Introduction to Onshape interface", "Navigating the 3D workspace", "Understanding coordinate systems", "Basic file management", "Industry applications and career paths"], project: "Create a simple 2D sketch and explore the Onshape workspace" },
+      { week: 2, title: "Week 2: 2D Sketching Fundamentals", description: "Lines, arcs, circles, constraints, and dimensioning.", topics: ["Creating basic shapes (lines, circles, rectangles)", "Understanding geometric constraints", "Dimensioning and measurements", "Sketch relationships and dependencies", "Editing and modifying sketches", "Best practices for clean sketches"], project: "Design a precise 2D technical drawing with proper dimensions" },
+      { week: 3, title: "Week 3: 3D Modeling Basics", description: "Extrude, revolve, fillet, chamfer, and boolean operations.", topics: ["Extruding 2D sketches into 3D", "Revolve and sweep operations", "Fillet and chamfer tools", "Boolean operations (union, subtract, intersect)", "Working with multiple features", "Understanding design intent"], project: "Create a 3D object from 2D sketches using extrusion and revolve" },
+      { week: 4, title: "Week 4: Advanced Features", description: "Patterns, mirrors, shells, and lofts for complex geometry.", topics: ["Patterns and arrays", "Mirror and symmetry tools", "Shell and wall thickness", "Loft and sweep for complex shapes", "Parametric modeling concepts", "Design for manufacturability"], project: "Design a complex object using advanced features like patterns and shells" },
+      { week: 5, title: "Week 5: Assemblies", description: "Combining parts, applying joints and constraints, motion simulation.", topics: ["Creating assembly files", "Mating parts together", "Understanding degrees of freedom", "Motion simulation basics", "Exploded views and documentation", "Assembly constraints and relationships"], project: "Build a multi-part assembly with moving components" },
+      { week: 6, title: "Week 6: Final Project & Presentation", description: "Designing, modeling, and presenting a complete product prototype.", topics: ["Project planning and requirements", "Advanced modeling techniques", "Creating engineering drawings", "Presentation and documentation", "Design optimization", "Portfolio development"], project: "Design and present a complete product prototype with documentation" }
     ],
     prerequisites: [
       "Basic understanding of geometry",
@@ -175,12 +184,12 @@ export const programs: Program[] = [
       "Present data-driven insights",
     ],
     weeklyBreakdown: [
-      { week: "Week 1", topic: "What is Data Science?", details: "Introduction to data science, real-world applications, types of data." },
-      { week: "Week 2", topic: "Data Collection & Cleaning", details: "Working with CSV files, handling missing values, data types." },
-      { week: "Week 3", topic: "Data Visualization", details: "Creating charts and graphs with matplotlib and seaborn." },
-      { week: "Week 4", topic: "Statistics Fundamentals", details: "Mean, median, mode, standard deviation, and correlation." },
-      { week: "Week 5", topic: "Intro to Machine Learning", details: "Supervised learning, training/testing split, linear regression." },
-      { week: "Week 6", topic: "ML Project & Presentation", details: "Building a classification model and presenting findings." },
+      { week: 1, title: "Week 1: What is Data Science?", description: "Introduction to data science, real-world applications, types of data.", topics: ["Data science overview", "Real-world applications", "Types of data", "Data science workflow", "Industry roles", "Ethics in data science"], project: "Explore a real dataset and identify key insights" },
+      { week: 2, title: "Week 2: Data Collection & Cleaning", description: "Working with CSV files, handling missing values, data types.", topics: ["CSV file handling", "Missing values", "Data types", "Data cleaning techniques", "Data validation", "Documentation"], project: "Clean and prepare a messy dataset for analysis" },
+      { week: 3, title: "Week 3: Data Visualization", description: "Creating charts and graphs with matplotlib and seaborn.", topics: ["Matplotlib basics", "Chart creation", "Advanced visualization with seaborn", "Chart types", "Data storytelling", "Custom plots"], project: "Create compelling visualizations from cleaned dataset" },
+      { week: 4, title: "Week 4: Statistics Fundamentals", description: "Mean, median, mode, standard deviation, and correlation.", topics: ["Central tendency measures", "Standard deviation", "Correlation", "Statistical significance", "Hypothesis testing"], project: "Perform statistical analysis on dataset and draw conclusions" },
+      { week: 5, title: "Week 5: Intro to Machine Learning", description: "Supervised learning, training/testing split, linear regression.", topics: ["ML concepts", "Supervised vs unsupervised", "Training/testing split", "Linear regression", "Model evaluation", "Overfitting"], project: "Build and evaluate a simple predictive model" },
+      { week: 6, title: "Week 6: ML Project & Presentation", description: "Building a classification model and presenting findings.", topics: ["Project planning", "Advanced modeling", "Model optimization", "Presentations", "Communicating findings", "Next steps"], project: "Complete end-to-end ML project and present results" }
     ],
     prerequisites: [
       "Basic Python knowledge (variables, loops, functions)",
@@ -206,7 +215,7 @@ export const programs: Program[] = [
     description:
       "Prepare for the American Computer Science League with focused lessons on Boolean algebra, data structures, and FSAs.",
     difficulty: "Advanced",
-    ageRange: "Ages 13–18",
+    ageRange: "Ages 12-14",
     icon: <Trophy className="w-8 h-8" />,
     overview:
       "The ACSL Bootcamp is an intensive preparation course for students competing in the American Computer Science League. Covering all major ACSL topics, this course blends theory with extensive practice problems to sharpen competitive programming skills and deepen CS knowledge.",
@@ -219,12 +228,12 @@ export const programs: Program[] = [
       "Complete timed practice contests",
     ],
     weeklyBreakdown: [
-      { week: "Week 1", topic: "Number Systems & Bit Manipulation", details: "Binary, octal, hexadecimal conversions, bitwise operations." },
-      { week: "Week 2", topic: "Boolean Algebra", details: "Logic gates, truth tables, simplification, De Morgan's laws." },
-      { week: "Week 3", topic: "Data Structures", details: "Stacks, queues, trees, and graph representations." },
-      { week: "Week 4", topic: "FSAs & Regular Expressions", details: "Designing and tracing finite state automata, pattern matching." },
-      { week: "Week 5", topic: "LISP & Functional Concepts", details: "Prefix notation, recursive evaluation, LISP-style problems." },
-      { week: "Week 6", topic: "Mock Contests & Review", details: "Full-length practice tests, timed challenges, and review sessions." },
+      { week: 1, title: "Week 1: Number Systems & Bit Manipulation", description: "Binary, octal, hexadecimal conversions, bitwise operations.", topics: ["Binary to decimal conversion", "Octal and hexadecimal systems", "Bitwise operations (AND, OR, XOR, NOT)", "Two's complement representation", "Arithmetic in different bases", "ACSL problem-solving strategies"], project: "Solve number system conversion problems under time constraints" },
+      { week: 2, title: "Week 2: Boolean Algebra & Logic Gates", description: "Logic gates, truth tables, simplification, De Morgan's laws.", topics: ["Truth tables and logic gates", "Boolean expressions and simplification", "De Morgan's laws", "Karnaugh maps", "Logic circuit design", "ACSL Boolean algebra problems"], project: "Design and simplify complex Boolean expressions" },
+      { week: 3, title: "Week 3: Data Structures & Algorithms", description: "Stacks, queues, trees, and graph representations.", topics: ["Stacks and queues implementation", "Binary trees and traversals", "Graph representations", "Recursion fundamentals", "Big O notation basics", "ACSL data structure problems"], project: "Implement and analyze basic data structures" },
+      { week: 4, title: "Week 4: Finite State Automata (FSAs)", description: "Designing and tracing finite state automata, pattern matching.", topics: ["FSA design principles", "State transitions and diagrams", "Pattern recognition", "Regular expressions basics", "Deterministic vs non-deterministic FSAs", "ACSL FSA problem strategies"], project: "Create and trace finite state automata for pattern matching" },
+      { week: 5, title: "Week 5: LISP & Functional Programming", description: "Prefix notation, recursive evaluation, LISP-style problems.", topics: ["LISP syntax and evaluation", "Prefix and postfix notation", "Recursive functions", "List processing in LISP", "Functional programming concepts", "ACSL LISP-style problems"], project: "Solve LISP evaluation problems and recursive challenges" },
+      { week: 6, title: "Week 6: Mock Contests & Final Review", description: "Full-length practice tests, timed challenges, and review sessions.", topics: ["Timed practice tests", "ACSL contest format", "Problem-solving under pressure", "Review of all topics", "Test-taking strategies", "Final competition simulation"], project: "Complete full-length ACSL mock contest with all problem types" }
     ],
     prerequisites: [
       "Proficiency in at least one programming language",
@@ -249,7 +258,7 @@ export const programs: Program[] = [
     description:
       "Master foundational algebra concepts including equations, functions, graphing, and problem-solving strategies.",
     difficulty: "Beginner",
-    ageRange: "Ages 11–14",
+    ageRange: "Ages 10-13",
     icon: <Calculator className="w-8 h-8" />,
     overview:
       "Fundamentals of Algebra builds a strong mathematical foundation for students entering middle and high school. Through clear explanations, guided practice, and real-world problem sets, students develop fluency in algebraic thinking — a skill essential for all STEM fields.",
@@ -262,12 +271,12 @@ export const programs: Program[] = [
       "Build mathematical reasoning and proof skills",
     ],
     weeklyBreakdown: [
-      { week: "Week 1", topic: "Expressions & Variables", details: "Order of operations, combining like terms, evaluating expressions." },
-      { week: "Week 2", topic: "Equations & Inequalities", details: "Solving one-step and multi-step equations, graphing inequalities." },
-      { week: "Week 3", topic: "Linear Functions", details: "Slope, y-intercept, graphing lines, slope-intercept form." },
-      { week: "Week 4", topic: "Systems of Equations", details: "Solving by substitution and elimination, graphical solutions." },
-      { week: "Week 5", topic: "Exponents & Polynomials", details: "Laws of exponents, multiplying polynomials, intro to factoring." },
-      { week: "Week 6", topic: "Review & Problem Solving", details: "Cumulative review, word problems, and algebraic reasoning challenges." },
+      { week: 1, title: "Week 1: Expressions & Variables", description: "Order of operations, combining like terms, evaluating expressions.", topics: ["Order of operations", "Variables and constants", "Evaluating algebraic expressions", "Combining like terms", "Distributive property", "Real-world applications"], project: "Create and evaluate expressions representing real-world scenarios" },
+      { week: 2, title: "Week 2: Equations & Inequalities", description: "Solving one-step and multi-step equations, graphing inequalities.", topics: ["One-step equations", "Multi-step equations", "Variables on both sides", "Graphing inequalities", "Solution sets", "Word problem applications"], project: "Solve and graph linear inequalities representing real constraints" },
+      { week: 3, title: "Week 3: Linear Functions", description: "Slope, y-intercept, graphing lines, slope-intercept form.", topics: ["Function notation", "Domain and range", "Slope and rate of change", "Y-intercept", "Graphing linear functions", "Slope-intercept form"], project: "Model and analyze real-world linear relationships" },
+      { week: 4, title: "Week 4: Systems of Equations", description: "Solving by substitution and elimination, graphical solutions.", topics: ["Solving by substitution", "Solving by elimination", "Graphical solutions", "Consistent and inconsistent systems", "Applications to real problems"], project: "Solve systems representing real-world scenarios" },
+      { week: 5, title: "Week 5: Exponents & Polynomials", description: "Laws of exponents, multiplying polynomials, intro to factoring.", topics: ["Laws of exponents", "Negative and zero exponents", "Multiplying monomials", "Introduction to polynomials", "Basic factoring", "Scientific notation"], project: "Simplify and factor polynomial expressions" },
+      { week: 6, title: "Week 6: Review & Problem Solving", description: "Cumulative review, word problems, and algebraic reasoning challenges.", topics: ["Comprehensive review of all topics", "Multi-step word problems", "Algebraic reasoning", "Problem-solving strategies", "Test preparation", "Final project presentation"], project: "Complete comprehensive algebra project demonstrating all learned skills" }
     ],
     prerequisites: [
       "Comfort with arithmetic (fractions, decimals, percentages)",

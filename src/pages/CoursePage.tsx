@@ -116,42 +116,35 @@ const CoursePage = () => {
         </Section>
 
         {/* Course Outline / Weekly Breakdown */}
-        {course.curriculumOutline && course.curriculumOutline.length > 0 ? (
+        {course.weeklyBreakdown && course.weeklyBreakdown.length > 0 ? (
           <Section title={course.curriculumTitle || "The Course Outline"} delay={0.4}>
             <div className="space-y-4">
-              {course.curriculumOutline.map((section, i) => (
+              {course.weeklyBreakdown.map((week, i) => (
                 <div key={i} className="glass rounded-lg p-4 border border-border/50">
                   <h4 className="font-heading font-semibold text-foreground mb-1">
-                    {section.title}
+                    {week.title}
                   </h4>
-                  {section.link && (
-                    <a
-                      href={section.link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary text-xs hover:text-primary/80 transition-colors underline underline-offset-2"
-                    >
-                      {section.link.label} →
-                    </a>
-                  )}
-                  {section.subtopics && section.subtopics.length > 0 && (
-                    <ul className="mt-2 grid sm:grid-cols-2 gap-x-6 gap-y-1">
-                      {section.subtopics.map((sub, j) => (
-                        <li key={j} className="flex items-center gap-2 text-muted-foreground text-sm">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0" />
-                          {sub}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <p className="text-muted-foreground mb-4">
+                    {week.description}
+                  </p>
+                  <ul className="mt-2 grid sm:grid-cols-2 gap-x-6 gap-y-1">
+                    {week.topics.map((topic, j) => (
+                      <li key={j} className="flex items-center gap-2 text-muted-foreground text-sm">
+                        <span className="mt-1.5 w-2 h-1.5 rounded-full bg-primary shrink-0" />
+                        {topic}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 p-4 bg-muted/50 rounded-lg">
+                    <h5 className="font-semibold text-foreground text-sm">
+                      Weekly Project:
+                    </h5>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {week.project}
+                    </p>
+                  </div>
                 </div>
               ))}
-              {course.disclaimer && (
-                <div className="glass rounded-lg p-4 border border-accent/30 mt-4">
-                  <p className="text-xs text-accent font-heading uppercase tracking-wider mb-1">Disclaimer</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{course.disclaimer}</p>
-                </div>
-              )}
             </div>
           </Section>
         ) : course.weeklyBreakdown.length > 0 ? (
