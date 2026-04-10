@@ -129,7 +129,8 @@ const SignupPage = () => {
         experience_level: formData.experienceLevel,
         goals: formData.goals,
         how_did_you_hear: formData.howDidYouHear || null,
-        status: 'pending'
+        status: 'pending',
+        submitted_at: readableDate
       } as any);
 
       if (error) {
