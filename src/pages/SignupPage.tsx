@@ -16,6 +16,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { syncStudentRegistrationsToSheets } from "@/integrations/google-sheets/sync";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -160,6 +161,11 @@ const SignupPage = () => {
           },
         },
       }).catch(err => console.error('Welcome email failed:', err));
+
+      // Sync to Google Sheets
+      syncStudentRegistrationsToSheets().catch(err => 
+        console.error('Google Sheets sync failed:', err)
+      );
 
       setIsSubmitting(false);
       toast({
