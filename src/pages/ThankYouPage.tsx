@@ -99,7 +99,7 @@ const ThankYouPage = () => {
                 </div>
                 <div>
                   <h3 className="font-medium text-foreground">Email Confirmation</h3>
-                  <p className="text-sm text-muted-foreground">You'll receive a confirmation email with next steps and payment information.</p>
+                  <p className="text-sm text-muted-foreground">You'll receive a confirmation email with next steps and course details. All classes are completely free!</p>
                 </div>
               </div>
               
