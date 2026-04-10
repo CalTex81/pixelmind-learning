@@ -128,8 +128,8 @@ export const programs: Program[] = [
     ],
     classSchedule: {
       day: "Mondays",
-      time: "1pm-2pm",
-      dateRange: "6/15-7/20"
+      time: "1pm-2pm PDT",
+      dateRange: "June 15 - July 20"
     }
   },
   {
@@ -176,8 +176,8 @@ export const programs: Program[] = [
     ],
     classSchedule: {
       day: "Tuesdays",
-      time: "1pm-2pm",
-      dateRange: "6/16-7/21"
+      time: "1pm-2pm PDT",
+      dateRange: "June 16 - July 21"
     }
   },
   {
@@ -225,8 +225,8 @@ export const programs: Program[] = [
     ],
     classSchedule: {
       day: "Fridays",
-      time: "1pm-2pm",
-      dateRange: "6/19-7/24"
+      time: "1pm-2pm PDT",
+      dateRange: "June 19 - July 24"
     }
   },
     {
@@ -273,8 +273,8 @@ export const programs: Program[] = [
     ],
     classSchedule: {
       day: "Thursdays",
-      time: "1pm-2pm",
-      dateRange: "6/18-7/23"
+      time: "1pm-2pm PDT",
+      dateRange: "June 18 - July 23"
     }
   },
 ];
