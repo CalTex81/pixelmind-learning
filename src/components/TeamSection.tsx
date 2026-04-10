@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Linkedin, X } from "lucide-react";
+import { Linkedin, X, Github } from "lucide-react";
 import { useState } from "react";
 
 interface TeamMember {
@@ -19,6 +19,7 @@ const team: TeamMember[] = [
     bio: "Freshman at Mission San Jose High | Passionate Computer Science & Artificial Intelligence Student",
     socials: [
       { type: "linkedin", url: "#" },
+      { type: "github", url: "https://github.com/CalTex81" },
     ],
     grade: "Freshman",
     school: "Mission San Jose High",
@@ -29,6 +30,7 @@ const team: TeamMember[] = [
 const SocialIcon = ({ type }: { type: string }) => {
   switch (type) {
     case "linkedin": return <Linkedin size={16} />;
+    case "github": return <Github size={16} />;
     default: return null;
   }
 };
