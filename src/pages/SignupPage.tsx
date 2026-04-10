@@ -136,32 +136,6 @@ const SignupPage = () => {
         throw error;
       }
 
-      // Send data to Zapier webhook for Google Sheets sync
-      if (ZAPIER_WEBHOOK_URL && ZAPIER_WEBHOOK_URL !== "PASTE_YOUR_ZAPIER_WEBHOOK_URL_HERE") {
-        fetch(ZAPIER_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          mode: "no-cors",
-          body: JSON.stringify({
-            id: registrationId,
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            email: formData.email,
-            phone: formData.phone || "",
-            parent_name: formData.parentName,
-            parent_email: formData.parentEmail,
-            parent_phone: formData.parentPhone,
-            student_age: formData.studentAge,
-            school: formData.school || "",
-            selected_courses: courseNames,
-            experience_level: formData.experienceLevel,
-            goals: formData.goals,
-            how_did_you_hear: formData.howDidYouHear || "",
-            status: "pending",
-            submitted_at: readableDate,
-          }),
-        }).catch(err => console.error("Zapier webhook failed:", err));
-      }
 
       // Send welcome email with course details and calendar links
       const courseInfoForEmail = formData.selectedCourses
