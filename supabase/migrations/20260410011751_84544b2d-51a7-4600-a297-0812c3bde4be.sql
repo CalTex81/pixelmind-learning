@@ -1,0 +1,1 @@
+ALTER TABLE public.student_registrations ADD COLUMN submitted_at text;

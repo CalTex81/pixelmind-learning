@@ -119,6 +119,7 @@ export type Database = {
           selected_courses: Json
           status: string
           student_age: string
+          submitted_at: string | null
         }
         Insert: {
           created_at?: string
@@ -137,6 +138,7 @@ export type Database = {
           selected_courses?: Json
           status?: string
           student_age: string
+          submitted_at?: string | null
         }
         Update: {
           created_at?: string
@@ -155,6 +157,7 @@ export type Database = {
           selected_courses?: Json
           status?: string
           student_age?: string
+          submitted_at?: string | null
         }
         Relationships: []
       }
