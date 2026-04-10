@@ -74,6 +74,8 @@ const SignupPage = () => {
     }));
   };
 
+  const ZAPIER_WEBHOOK_URL = "PASTE_YOUR_ZAPIER_WEBHOOK_URL_HERE";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -85,16 +87,32 @@ const SignupPage = () => {
       });
       return;
     }
-    
 
     setIsSubmitting(true);
     
     try {
       const registrationId = crypto.randomUUID();
+      const now = new Date();
+      const readableDate = now.toLocaleString("en-US", {
+        timeZone: "America/New_York",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+
       const selectedCoursesWithRatings = formData.selectedCourses.map(courseSlug => ({
         course_slug: courseSlug,
         prerequisite_ratings: formData.courseRatings[courseSlug] || {}
       }));
+
+      const courseNames = formData.selectedCourses
+        .map(slug => programs.find(p => p.slug === slug)?.title)
+        .filter(Boolean)
+        .join(", ");
 
       const { error } = await supabase.from('student_registrations' as any).insert({
         id: registrationId,
@@ -116,6 +134,33 @@ const SignupPage = () => {
 
       if (error) {
         throw error;
+      }
+
+      // Send data to Zapier webhook for Google Sheets sync
+      if (ZAPIER_WEBHOOK_URL && ZAPIER_WEBHOOK_URL !== "PASTE_YOUR_ZAPIER_WEBHOOK_URL_HERE") {
+        fetch(ZAPIER_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          mode: "no-cors",
+          body: JSON.stringify({
+            id: registrationId,
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            phone: formData.phone || "",
+            parent_name: formData.parentName,
+            parent_email: formData.parentEmail,
+            parent_phone: formData.parentPhone,
+            student_age: formData.studentAge,
+            school: formData.school || "",
+            selected_courses: courseNames,
+            experience_level: formData.experienceLevel,
+            goals: formData.goals,
+            how_did_you_hear: formData.howDidYouHear || "",
+            status: "pending",
+            submitted_at: readableDate,
+          }),
+        }).catch(err => console.error("Zapier webhook failed:", err));
       }
 
       // Send welcome email with course details and calendar links
