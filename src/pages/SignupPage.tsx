@@ -74,7 +74,7 @@ const SignupPage = () => {
     }));
   };
 
-  const ZAPIER_WEBHOOK_URL = "PASTE_YOUR_ZAPIER_WEBHOOK_URL_HERE";
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
