@@ -73,6 +73,11 @@ const ProgramsSection = () => {
                 <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
                   {program.description}
                 </p>
+                {program.disclaimer && (
+                  <p className="text-xs text-secondary font-semibold mb-4 italic whitespace-pre-line">
+                    {program.disclaimer}
+                  </p>
+                )}
                 <div className="flex items-center justify-between text-xs">
                   <span className={`font-heading uppercase tracking-wider ${difficultyColor[program.difficulty]}`}>
                     {program.difficulty}

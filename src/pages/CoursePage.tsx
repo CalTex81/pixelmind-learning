@@ -108,6 +108,13 @@ const CoursePage = () => {
                     </div>
                   </div>
                 )}
+                {course.disclaimer && (
+                  <div className="mt-4 p-4 bg-secondary/10 border border-secondary/30 rounded-lg">
+                    <p className="text-sm text-secondary font-semibold italic whitespace-pre-line">
+                      {course.disclaimer}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
             <Link to="/signup">

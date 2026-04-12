@@ -106,7 +106,7 @@ export const programs: Program[] = [
       }
     ],
     curriculumTitle: "PixelMind Curriculum: Python",
-    disclaimer: "This class does not teach machine learning or AI topics, but rather introduces students to Python, a language that is commonly used for machine learning.",
+    disclaimer: "This class does not teach machine learning or AI topics, but rather introduces students to Python, a language that is commonly used for machine learning. \n Note: This course is tentative and will be offered based on the number of sign-ups received.",
     prerequisites: [
       "No prior programming experience required",
       "Basic computer literacy (typing, navigating files)",
@@ -255,6 +255,7 @@ export const programs: Program[] = [
       { week: 5, title: "Week 5: Exponents & Polynomials", description: "Laws of exponents, multiplying polynomials, intro to factoring.", topics: ["Laws of exponents", "Negative and zero exponents", "Multiplying monomials", "Introduction to polynomials", "Basic factoring", "Scientific notation"], project: "Simplify and factor polynomial expressions" },
       { week: 6, title: "Week 6: Review & Problem Solving", description: "Cumulative review, word problems, and algebraic reasoning challenges.", topics: ["Comprehensive review of all topics", "Multi-step word problems", "Algebraic reasoning", "Problem-solving strategies", "Test preparation", "Final project presentation"], project: "Complete comprehensive algebra project demonstrating all learned skills" }
     ],
+    disclaimer: "Note: This course is tentative and will be offered based on the number of sign-ups received.",
     prerequisites: [
       "Comfort with arithmetic (fractions, decimals, percentages)",
       "Basic understanding of number lines and coordinates",
