@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Linkedin, X, Github } from "lucide-react";
-import { useState } from "react";
+import { Linkedin, Github } from "lucide-react";
 
 interface TeamMember {
   name: string;
@@ -36,8 +35,6 @@ const SocialIcon = ({ type }: { type: string }) => {
 };
 
 const TeamSection = () => {
-  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-
   return (
     <section id="team" className="relative py-24">
       <div className="container mx-auto px-4">
@@ -55,39 +52,55 @@ const TeamSection = () => {
           </p>
         </motion.div>
 
-        <div className="flex justify-center gap-6">
+        <div className="flex justify-center gap-6 flex-wrap">
           {team.map((member, i) => (
             <motion.div
               key={member.name}
-              className="glass rounded-xl p-6 text-center group transition-all duration-300 hover:glow-magenta pixel-border cursor-pointer"
+              className="glass rounded-xl p-8 group transition-all duration-300 hover:glow-magenta pixel-border max-w-2xl w-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ scale: 1.03 }}
-              onClick={() => setSelectedMember(member)}
             >
-              {/* Avatar placeholder */}
-              <div className="w-20 h-20 mx-auto mb-4 rounded-lg bg-muted flex items-center justify-center font-heading text-2xl text-primary font-bold">
-                {member.name.split(" ").map((n) => n[0]).join("")}
+              <div className="flex flex-col items-center text-center mb-6">
+                <div className="w-24 h-24 mb-4 rounded-lg bg-muted flex items-center justify-center font-heading text-3xl text-primary font-bold">
+                  {member.name.split(" ").map((n) => n[0]).join("")}
+                </div>
+                <h3 className="font-heading text-xl font-bold text-foreground mb-1">
+                  {member.name}
+                </h3>
+                <p className="text-xs text-primary font-display uppercase tracking-wider mb-3">
+                  {member.role}
+                </p>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {member.bio}
+                </p>
               </div>
-              <h3 className="font-heading text-sm font-bold text-foreground mb-1">
-                {member.name}
-              </h3>
-              <p className="text-xs text-primary font-display uppercase tracking-wider mb-3">
-                {member.role}
-              </p>
-              <p className="text-muted-foreground text-xs leading-relaxed mb-4 shadow-md">
-                {member.bio}
-              </p>
-              <div className="flex justify-center gap-3">
+
+              <div className="space-y-4 border-t border-border/50 pt-6">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-1">Grade</h4>
+                    <p className="text-foreground text-sm">{member.grade}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-1">School</h4>
+                    <p className="text-foreground text-sm">{member.school}</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-2">Experience</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{member.experience}</p>
+                </div>
+              </div>
+
+              <div className="flex justify-center gap-4 mt-6 pt-6 border-t border-border/50">
                 {member.socials.map((s) => (
                   <a
                     key={s.type}
                     href={s.url}
                     className="text-muted-foreground hover:text-primary transition-colors"
                     aria-label={s.type}
-                    onClick={(e) => e.stopPropagation()}
                   >
                     <SocialIcon type={s.type} />
                   </a>
@@ -97,76 +110,6 @@ const TeamSection = () => {
           ))}
         </div>
       </div>
-
-      {/* Modal for team member details */}
-      {selectedMember && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedMember(null)}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="glass rounded-xl p-8 max-w-md w-full relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setSelectedMember(null)}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <X className="w-6 h-6" />
-            </button>
-
-            <div className="flex flex-col items-center mb-6">
-              <div className="w-24 h-24 rounded-lg bg-muted flex items-center justify-center font-heading text-3xl text-primary font-bold mb-4">
-                {selectedMember.name.split(" ").map((n) => n[0]).join("")}
-              </div>
-              <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                {selectedMember.name}
-              </h3>
-              <p className="text-primary font-display uppercase tracking-wider text-sm mb-4">
-                {selectedMember.role}
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-foreground mb-1">Grade</h4>
-                <p className="text-muted-foreground">{selectedMember.grade}</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-1">School</h4>
-                <p className="text-muted-foreground">{selectedMember.school}</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-1">Experience</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">{selectedMember.experience}</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-1">Bio</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">{selectedMember.bio}</p>
-              </div>
-            </div>
-
-            <div className="flex justify-center gap-3 mt-6">
-              {selectedMember.socials.map((s) => (
-                <a
-                  key={s.type}
-                  href={s.url}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  aria-label={s.type}
-                >
-                  <SocialIcon type={s.type} />
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
     </section>
   );
 };
