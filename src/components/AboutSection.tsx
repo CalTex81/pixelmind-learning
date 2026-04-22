@@ -65,14 +65,13 @@ const AboutSection = () => {
               Our Mission
             </h2>
             <p className="text-muted-foreground font-body leading-relaxed mb-4">
+              We host free, online classes for elementary and middle school students in a wide variety
+              of topics in computer science, math, and engineering!
+            </p>
+            <p className="text-muted-foreground font-body leading-relaxed mb-4">
               PixelMind Learning is on a mission to make computer science education accessible,
               creative, and empowering for every young learner. We believe that technology
               is a superpower — and every kid deserves the chance to wield it.
-            </p>
-            <p className="text-muted-foreground font-body leading-relaxed mb-4">
-              Through hands-on workshops, mentorship, and project-based curricula, we help
-              students from underrepresented communities discover their passion for code,
-              digital art, game design, and beyond.
             </p>
             <p className="text-muted-foreground font-body leading-relaxed">
               Founded on the belief that creativity and technology go hand-in-hand, we're
