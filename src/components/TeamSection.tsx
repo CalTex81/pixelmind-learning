@@ -21,8 +21,21 @@ const team: TeamMember[] = [
       { type: "github", url: "https://github.com/CalTex81" },
     ],
     grade: "Freshman",
-    school: "Mission San Jose High",
-    experience: "3+ years of programming experience in Python, Java, C++, HTML/CSS, and Javascript. Developed multiple AI projects including an ASL Translator. Placed high in 2 different hackathons and has many hours of teaching experience. Has been ranked as a finalist in ACSL for many years. Founded the Computer Applications Club in middle school and is the activities coordinator at the AI Club in high school.",
+    school: "Mission San Jose High School",
+    experience: [
+      "Freshman at Mission San Jose High School",
+      "Has participated in various computer science and mathematical competitions ranging from the Math Kangaroo, AMC10 to ACSL (American Computer Science League)",
+      "ACSL Elementary School National Winner + 3-Year Finalist",
+      "Math Kangaroo Elementary 1st Place Winner",
+      "AMC8 Achievement Award + Honor Roll",
+      "Noetic National Honor Roll",
+      "Has experience in the languages of Python, Java, C++, and HTML",
+      "Hackabyte Hackathon Honorable Mention",
+      "Math League CA State 3rd Place",
+      "Been on MOEMS Honor Roll since elementary school",
+      "Has experience educating students through hours of mentorship at school and volunteering at FCSN (Friends of Children with Special Needs)",
+      "Has been mentoring students in abacus since third grade and has mentored a FLL (First Lego League - Robotics) team",
+    ].join("\n"),
   },
 ];
 
@@ -89,8 +102,12 @@ const TeamSection = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-2">Experience</h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{member.experience}</p>
+                  <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-2">About</h4>
+                  <ul className="text-muted-foreground text-sm leading-relaxed list-disc pl-5 space-y-1.5 text-left">
+                    {member.experience.split("\n").map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
