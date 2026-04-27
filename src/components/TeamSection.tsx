@@ -30,7 +30,7 @@ const team: TeamMember[] = [
       "AMC8 Achievement Award + Honor Roll",
       "Noetic National Honor Roll",
       "Has experience in the languages of Python, Java, C++, and HTML",
-      "Hackabyte Hackathon Honorable Mention",
+      "Hackabyte Hackathon Honorable Mention + 3rd Place at an AI Hackathon",
       "Math League CA State 3rd Place",
       "Been on MOEMS Honor Roll since elementary school",
       "Has experience educating students through hours of mentorship at school and volunteering at FCSN (Friends of Children with Special Needs)",
