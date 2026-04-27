@@ -102,8 +102,12 @@ const TeamSection = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-2">Experience</h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{member.experience}</p>
+                  <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-2">About</h4>
+                  <ul className="text-muted-foreground text-sm leading-relaxed list-disc pl-5 space-y-1.5 text-left">
+                    {member.experience.split("\n").map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
