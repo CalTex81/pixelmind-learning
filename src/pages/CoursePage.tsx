@@ -115,6 +115,11 @@ const CoursePage = () => {
                     </p>
                   </div>
                 )}
+                <div className="mt-4 p-4 bg-secondary/10 border border-secondary/30 rounded-lg">
+                  <p className="text-sm text-secondary font-semibold italic underline">
+                    Registration closes by May 31st.
+                  </p>
+                </div>
               </div>
             </div>
             <Link to="/signup">
