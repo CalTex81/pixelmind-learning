@@ -212,7 +212,7 @@ const SignupPage = () => {
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Join our community of young learners and start your journey into technology and creativity.
             </p>
-            <p className="mt-4 inline-block text-secondary font-heading text-sm uppercase tracking-wider border border-secondary/40 bg-secondary/10 rounded-md px-3 py-1">
+            <p className="mt-4 inline-block text-secondary font-heading text-sm uppercase tracking-wider border border-secondary/40 bg-secondary/10 rounded-md px-3 py-1 underline">
               Registration closes May 31st
             </p>
           </div>
