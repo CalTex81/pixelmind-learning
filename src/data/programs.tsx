@@ -106,7 +106,7 @@ export const programs: Program[] = [
       }
     ],
     curriculumTitle: "PixelMind Curriculum: Python",
-    disclaimer: "This class does not teach machine learning or AI topics, but rather introduces students to Python, a language that is commonly used for machine learning. \n Registration closes May 31st.",
+    disclaimer: "This class does not teach machine learning or AI topics, but rather introduces students to Python, a language that is commonly used for machine learning.",
     prerequisites: [
       "No prior programming experience required",
       "Basic computer literacy (typing, navigating files)",
