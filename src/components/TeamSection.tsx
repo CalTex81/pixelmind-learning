@@ -79,11 +79,11 @@ const TeamSection = () => {
           </p>
         </motion.div>
 
-        <div className="flex justify-center gap-6 flex-wrap">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {team.map((member, i) => (
             <motion.div
               key={member.name}
-              className="glass rounded-xl p-8 group transition-all duration-300 hover:glow-magenta pixel-border max-w-2xl w-full"
+              className="glass rounded-xl p-8 group transition-all duration-300 hover:glow-magenta pixel-border w-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
