@@ -83,7 +83,7 @@ const TeamSection = () => {
           {team.map((member, i) => (
             <motion.div
               key={member.name}
-              className="glass rounded-xl p-8 group transition-all duration-300 hover:glow-magenta pixel-border w-full"
+              className="glass rounded-xl p-8 group transition-all duration-300 hover:glow-magenta border-2 border-primary/40 w-full"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
