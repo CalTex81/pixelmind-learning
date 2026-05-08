@@ -37,6 +37,20 @@ const team: TeamMember[] = [
       "Has been mentoring students in abacus since third grade and has mentored a FLL (First Lego League - Robotics) team",
     ].join("\n"),
   },
+  {
+    name: "Anant Kuppa",
+    role: "Math Instructor",
+    bio: "Freshman at Mission San Jose High | Dedicated Mathematics Learner",
+    socials: [],
+    grade: "Freshman",
+    school: "Mission San Jose High School",
+    experience: [
+      "Freshman at Mission San Jose High School",
+      "Completed Algebra 1 at Hopkins Middle School",
+      "Currently pursuing higher education in mathematics at Mission San Jose High School and other programs",
+      "Taught and helped middle schoolers during after-school tutoring sessions at Hopkins Middle School",
+    ].join("\n"),
+  },
 ];
 
 const SocialIcon = ({ type }: { type: string }) => {
