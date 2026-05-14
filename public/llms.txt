@@ -1,0 +1,44 @@
+# PixelMind Learning
+
+> A free tech education platform run by high school and college students, teaching coding, AI, web development, game design, competitive math, and data science to young learners ages 9–14. All courses are 100% free.
+
+## Pages
+
+- [/](/): Home page with hero, about, programs, team, blog, and partnership sections.
+- [/courses/python-101](/courses/python-101): Python 101 — Learn Python fundamentals through hands-on projects.
+- [/courses/intro-to-ai](/courses/intro-to-ai): Intro to AI — Explore machine learning, neural networks, and build AI projects.
+- [/courses/web-development](/courses/web-development): Web Development — Learn HTML, CSS, JavaScript, and build responsive websites.
+- [/courses/game-development](/courses/game-development): Game Development with Roblox — Design and code games using Roblox Studio and Lua.
+- [/courses/competitive-math](/courses/competitive-math): Competitive Math — Sharpen problem-solving skills with contest-style math training.
+- [/courses/data-science](/courses/data-science): Data Science — Analyze data, create visualizations, and tell stories with numbers.
+- [/signup](/signup): Student registration form for enrolling in free summer courses.
+- [/join](/join): Volunteer/mentor signup form for high school and college students who want to teach.
+- [/thank-you](/thank-you): Confirmation page shown after successful registration.
+- [/unsubscribe](/unsubscribe): Email unsubscribe page.
+
+## Programs
+
+PixelMind Learning offers six free summer courses for students ages 9–14:
+
+1. **Python 101** — Beginner programming with Python, covering variables, loops, functions, data structures, and a capstone project.
+2. **Intro to AI** — Machine learning basics, neural networks, and hands-on AI projects.
+3. **Web Development** — HTML, CSS, JavaScript, and responsive web design.
+4. **Game Development with Roblox** — Roblox Studio and Lua scripting for game creation.
+5. **Competitive Math** — Contest-style math and advanced problem-solving strategies.
+6. **Data Science** — Data analysis, visualization, and storytelling with real datasets.
+
+All courses run during the summer. Registration closes **May 31st**.
+
+## About
+
+PixelMind Learning is a student-led nonprofit initiative based in Fremont, California. Founded by high schoolers, the mission is to make tech education accessible and free for young learners. The team consists of passionate high school and college student instructors and mentors.
+
+## Partnership
+
+PixelMind Learning partners with the **Future Leaders Initiative** to expand educational outreach.
+
+## Contact & Social
+
+- Instagram: @pixelmindlearning
+- Facebook: PixelMind Learning
+- Website: https://www.pixelmindlearning.org
