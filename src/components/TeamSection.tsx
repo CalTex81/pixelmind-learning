@@ -11,7 +11,7 @@ interface TeamMember {
   experience: string;
 }
 
-const team: TeamMember[] = [
+const founders: TeamMember[] = [
   {
     name: "Anish Sahoo",
     role: "Founder & Executive Director",
@@ -37,6 +37,9 @@ const team: TeamMember[] = [
       "Has been mentoring students in abacus since third grade and has mentored a FLL (First Lego League - Robotics) team",
     ].join("\n"),
   },
+];
+
+const instructors: TeamMember[] = [
   {
     name: "Anant Kuppa",
     role: "Math Instructor",
@@ -49,6 +52,20 @@ const team: TeamMember[] = [
       "Completed Algebra 1 at Hopkins Middle School",
       "Currently pursuing higher education in mathematics at Mission San Jose High School and other programs",
       "Taught and helped middle schoolers during after-school tutoring sessions at Hopkins Middle School",
+    ].join("\n"),
+  },
+  {
+    name: "Yash M",
+    role: "Instructor",
+    bio: "8th Grader at Hopkins Middle School | Python Enthusiast & Vibe Coder",
+    socials: [],
+    grade: "8th Grade",
+    school: "Hopkins Middle School",
+    experience: [
+      "8th Grade student at Hopkins Middle School",
+      "Experience with Python programming",
+      "Enjoys vibe coding",
+      "Assistant Prompt Engineer for Bounty",
     ].join("\n"),
   },
 ];
