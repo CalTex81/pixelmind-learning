@@ -78,6 +78,56 @@ const SocialIcon = ({ type }: { type: string }) => {
   }
 };
 
+const MemberCard = ({ member, i }: { member: TeamMember; i: number }) => (
+  <motion.div
+    className="glass rounded-xl p-8 group transition-all duration-300 hover:glow-magenta border-2 border-primary/40 w-full"
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: i * 0.1 }}
+  >
+    <div className="flex flex-col items-center text-center mb-6">
+      <div className="w-24 h-24 mb-4 rounded-lg bg-muted flex items-center justify-center font-heading text-3xl text-primary font-bold">
+        {member.name.split(" ").map((n) => n[0]).join("")}
+      </div>
+      <h3 className="font-heading text-xl font-bold text-foreground mb-1">{member.name}</h3>
+      <p className="text-xs text-primary font-display uppercase tracking-wider mb-3">{member.role}</p>
+      <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+    </div>
+
+    <div className="space-y-4 border-t border-border/50 pt-6">
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-1">Grade</h4>
+          <p className="text-foreground text-sm">{member.grade}</p>
+        </div>
+        <div>
+          <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-1">School</h4>
+          <p className="text-foreground text-sm">{member.school}</p>
+        </div>
+      </div>
+      <div>
+        <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-2">About</h4>
+        <ul className="text-muted-foreground text-sm leading-relaxed list-disc pl-5 space-y-1.5 text-left">
+          {member.experience.split("\n").map((item, idx) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    {member.socials.length > 0 && (
+      <div className="flex justify-center gap-4 mt-6 pt-6 border-t border-border/50">
+        {member.socials.map((s) => (
+          <a key={s.type} href={s.url} className="text-muted-foreground hover:text-primary transition-colors" aria-label={s.type}>
+            <SocialIcon type={s.type} />
+          </a>
+        ))}
+      </div>
+    )}
+  </motion.div>
+);
+
 const TeamSection = () => {
   return (
     <section id="team" className="relative py-24">
@@ -96,66 +146,22 @@ const TeamSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {team.map((member, i) => (
-            <motion.div
-              key={member.name}
-              className="glass rounded-xl p-8 group transition-all duration-300 hover:glow-magenta border-2 border-primary/40 w-full"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <div className="flex flex-col items-center text-center mb-6">
-                <div className="w-24 h-24 mb-4 rounded-lg bg-muted flex items-center justify-center font-heading text-3xl text-primary font-bold">
-                  {member.name.split(" ").map((n) => n[0]).join("")}
-                </div>
-                <h3 className="font-heading text-xl font-bold text-foreground mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-xs text-primary font-display uppercase tracking-wider mb-3">
-                  {member.role}
-                </p>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {member.bio}
-                </p>
-              </div>
+        <div className="mb-16">
+          <h3 className="text-center font-heading text-2xl font-bold text-primary uppercase tracking-wider mb-8">Founder</h3>
+          <div className="max-w-2xl mx-auto">
+            {founders.map((member, i) => (
+              <MemberCard key={member.name} member={member} i={i} />
+            ))}
+          </div>
+        </div>
 
-              <div className="space-y-4 border-t border-border/50 pt-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-1">Grade</h4>
-                    <p className="text-foreground text-sm">{member.grade}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-1">School</h4>
-                    <p className="text-foreground text-sm">{member.school}</p>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-heading text-xs uppercase tracking-wider text-primary mb-2">About</h4>
-                  <ul className="text-muted-foreground text-sm leading-relaxed list-disc pl-5 space-y-1.5 text-left">
-                    {member.experience.split("\n").map((item, idx) => (
-                      <li key={idx}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="flex justify-center gap-4 mt-6 pt-6 border-t border-border/50">
-                {member.socials.map((s) => (
-                  <a
-                    key={s.type}
-                    href={s.url}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                    aria-label={s.type}
-                  >
-                    <SocialIcon type={s.type} />
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+        <div>
+          <h3 className="text-center font-heading text-2xl font-bold text-primary uppercase tracking-wider mb-8">Instructors</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {instructors.map((member, i) => (
+              <MemberCard key={member.name} member={member} i={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
