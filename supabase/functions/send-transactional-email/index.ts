@@ -40,6 +40,33 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders })
   }
 
+  // Restrict to service-role callers only. The Supabase gateway already
+  // verified the JWT (verify_jwt = true); we additionally require the
+  // service_role claim so anonymous visitors cannot trigger arbitrary
+  // emails to arbitrary recipients via this endpoint.
+  const authHeader = req.headers.get('Authorization') || ''
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : ''
+  let isServiceRole = false
+  if (token) {
+    try {
+      const payloadB64 = token.split('.')[1]
+      if (payloadB64) {
+        const padded = payloadB64 + '='.repeat((4 - (payloadB64.length % 4)) % 4)
+        const json = atob(padded.replace(/-/g, '+').replace(/_/g, '/'))
+        const claims = JSON.parse(json)
+        isServiceRole = claims?.role === 'service_role'
+      }
+    } catch {
+      isServiceRole = false
+    }
+  }
+  if (!isServiceRole) {
+    return new Response(
+      JSON.stringify({ error: 'Forbidden' }),
+      { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    )
+  }
+
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 
