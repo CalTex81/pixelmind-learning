@@ -55,6 +55,20 @@ const instructors: TeamMember[] = [
     ].join("\n"),
   },
   {
+    name: "Atul Krishna Praanna",
+    role: "Instructor",
+    bio: "Freshman at Mission San Jose High | Computer Science Competitor",
+    socials: [],
+    grade: "Freshman",
+    school: "Mission San Jose High School",
+    experience: [
+      "Freshman at Mission San Jose High School",
+      "Competed in various computer science competitions, such as ACSL and more",
+      "ACSL Finalist (3rd Place)",
+      "Experience in Python",
+    ].join("\n"),
+  },
+  {
     name: "Yash M",
     role: "Instructor",
     bio: "8th Grader at Hopkins Middle School | Python Enthusiast & Vibe Coder",
