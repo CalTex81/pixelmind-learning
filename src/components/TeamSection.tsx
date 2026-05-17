@@ -55,7 +55,7 @@ const instructors: TeamMember[] = [
     ].join("\n"),
   },
   {
-    name: "Atul Krishna Praanna",
+    name: "Yash Manchikalapudi",
     role: "Instructor",
     bio: "Freshman at Mission San Jose High | Computer Science Competitor",
     socials: [],
