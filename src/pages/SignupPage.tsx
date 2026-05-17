@@ -92,7 +92,6 @@ const SignupPage = () => {
     setIsSubmitting(true);
     
     try {
-      const registrationId = crypto.randomUUID();
       const now = new Date();
       const readableDate = now.toLocaleString("en-US", {
         timeZone: "America/New_York",
@@ -110,36 +109,6 @@ const SignupPage = () => {
         prerequisite_ratings: formData.courseRatings[courseSlug] || {}
       }));
 
-      const courseNames = formData.selectedCourses
-        .map(slug => programs.find(p => p.slug === slug)?.title)
-        .filter(Boolean)
-        .join(", ");
-
-      const { error } = await supabase.from('student_registrations' as any).insert({
-        id: registrationId,
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        email: formData.email,
-        phone: formData.phone || null,
-        parent_name: formData.parentName,
-        parent_email: formData.parentEmail,
-        parent_phone: formData.parentPhone,
-        student_age: formData.studentAge,
-        school: formData.school,
-        selected_courses: selectedCoursesWithRatings,
-        experience_level: formData.experienceLevel,
-        goals: formData.goals,
-        how_did_you_hear: formData.howDidYouHear || null,
-        status: 'pending',
-        submitted_at: readableDate
-      } as any);
-
-      if (error) {
-        throw error;
-      }
-
-
-      // Send welcome email with course details and calendar links
       const courseInfoForEmail = formData.selectedCourses
         .map(slug => programs.find(p => p.slug === slug))
         .filter(Boolean)
@@ -150,17 +119,29 @@ const SignupPage = () => {
           dateRange: p!.classSchedule?.dateRange || '',
         }));
 
-      supabase.functions.invoke('send-transactional-email', {
+      const { data, error } = await supabase.functions.invoke('submit-student-registration', {
         body: {
-          templateName: 'welcome-registration',
-          recipientEmail: formData.email,
-          idempotencyKey: `welcome-reg-${registrationId}`,
-          templateData: {
-            firstName: formData.firstName,
-            courses: courseInfoForEmail,
-          },
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone || null,
+          parent_name: formData.parentName,
+          parent_email: formData.parentEmail,
+          parent_phone: formData.parentPhone,
+          student_age: formData.studentAge,
+          school: formData.school,
+          selected_courses: selectedCoursesWithRatings,
+          experience_level: formData.experienceLevel,
+          goals: formData.goals,
+          how_did_you_hear: formData.howDidYouHear || null,
+          submitted_at: readableDate,
+          course_info_for_email: courseInfoForEmail,
         },
-      }).catch(err => console.error('Welcome email failed:', err));
+      });
+
+      if (error || (data && (data as any).error)) {
+        throw new Error((data as any)?.error || error?.message || 'Submission failed');
+      }
 
       // Sync to Google Sheets
       syncStudentRegistrationsToSheets().catch(err => 
