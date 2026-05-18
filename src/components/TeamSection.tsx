@@ -69,7 +69,7 @@ const instructors: TeamMember[] = [
     ].join("\n"),
   },
   {
-    name: "Yash M",
+    name: "Yash Manchikalapudi",
     role: "Instructor",
     bio: "8th Grader at Hopkins Middle School | Python Enthusiast & Vibe Coder",
     socials: [],
