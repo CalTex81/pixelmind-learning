@@ -505,6 +505,7 @@ const SignupPage = () => {
               </Button>
             </div>
           </form>
+          )}
         </motion.div>
       </main>
 
