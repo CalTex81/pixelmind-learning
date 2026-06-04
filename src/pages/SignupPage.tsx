@@ -18,10 +18,13 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { syncStudentRegistrationsToSheets } from "@/integrations/google-sheets/sync";
 
+const REGISTRATION_CLOSE_DATE = new Date("2026-06-11T00:00:00-04:00");
+
 const SignupPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const registrationClosed = new Date() >= REGISTRATION_CLOSE_DATE;
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
