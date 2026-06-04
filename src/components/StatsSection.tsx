@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { useRef, useEffect } from "react";
 import { Users, BookOpen, Calendar, School, GraduationCap } from "lucide-react";
 
 interface StatItem {
@@ -14,6 +15,30 @@ const stats: StatItem[] = [
   { value: "3", label: "Schools Taught", icon: <School size={28} /> },
   { value: "30+", label: "Students Taught", icon: <GraduationCap size={28} /> },
 ];
+
+function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, { damping: 30, stiffness: 100 });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(target);
+    }
+  }, [isInView, target, motionValue]);
+
+  useEffect(() => {
+    const unsubscribe = springValue.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent = Math.round(latest) + suffix;
+      }
+    });
+    return unsubscribe;
+  }, [springValue, suffix]);
+
+  return <span ref={ref}>0{suffix}</span>;
+}
 
 const StatsSection = () => {
   return (
@@ -37,26 +62,30 @@ const StatsSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              className="glass rounded-xl p-6 text-center group transition-all duration-300 hover:glow-cyan border border-primary/30"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <div className="flex justify-center mb-4 text-primary group-hover:text-accent transition-colors">
-                {stat.icon}
-              </div>
-              <div className="font-heading text-4xl font-bold text-foreground mb-2">
-                {stat.value}
-              </div>
-              <div className="text-sm text-muted-foreground uppercase tracking-wider font-display">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
+          {stats.map((stat, i) => {
+            const numericValue = parseInt(stat.value);
+            const suffix = stat.value.replace(/\d/g, "");
+            return (
+              <motion.div
+                key={stat.label}
+                className="glass rounded-xl p-6 text-center group transition-all duration-300 hover:glow-cyan border border-primary/30"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <div className="flex justify-center mb-4 text-primary group-hover:text-accent transition-colors">
+                  {stat.icon}
+                </div>
+                <div className="font-heading text-4xl font-bold text-foreground mb-2">
+                  <CountUp target={numericValue} suffix={suffix} />
+                </div>
+                <div className="text-sm text-muted-foreground uppercase tracking-wider font-display">
+                  {stat.label}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
