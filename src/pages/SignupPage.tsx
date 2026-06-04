@@ -206,9 +206,20 @@ const SignupPage = () => {
               Join our community of young learners and start your journey into technology and creativity.
             </p>
             <p className="mt-4 inline-block text-secondary font-heading text-sm uppercase tracking-wider border border-secondary/40 bg-secondary/10 rounded-md px-3 py-1 underline">
-              Registration closes May 31st
+              {registrationClosed ? "Registration is now closed" : "Registration closes June 10th"}
             </p>
           </div>
+
+          {registrationClosed ? (
+            <Card className="glass border-border/50">
+              <CardHeader>
+                <CardTitle className="text-primary text-glow-cyan">Registration Closed</CardTitle>
+                <CardDescription>
+                  Signups closed on June 10th, 2026. Please check back for our next session or reach out to us directly.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          ) : (
 
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Student Information */}
