@@ -82,6 +82,15 @@ const SignupPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (registrationClosed) {
+      toast({
+        title: "Registration Closed",
+        description: "Registration closed on June 10th, 2026.",
+        variant: "destructive",
+      });
+      return;
+    }
     
     if (formData.selectedCourses.length === 0) {
       toast({
