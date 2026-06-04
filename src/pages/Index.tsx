@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import TopBanner from "@/components/TopBanner";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
+import StatsSection from "@/components/StatsSection";
 import ProgramsSection from "@/components/ProgramsSection";
 import BlogSection from "@/components/BlogSection";
 import PartnershipSection from "@/components/PartnershipSection";
@@ -21,6 +22,8 @@ const Index = () => {
         <HeroSection />
         <div className="neon-divider" />
         <AboutSection />
+        <div className="neon-divider" />
+        <StatsSection />
         <div className="neon-divider" />
         <ProgramsSection />
         <div className="neon-divider" />
