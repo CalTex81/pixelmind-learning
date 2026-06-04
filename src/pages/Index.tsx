@@ -23,6 +23,8 @@ const Index = () => {
         <div className="neon-divider" />
         <AboutSection />
         <div className="neon-divider" />
+        <StatsSection />
+        <div className="neon-divider" />
         <ProgramsSection />
         <div className="neon-divider" />
         <TeamSection />
