@@ -18,10 +18,13 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { syncStudentRegistrationsToSheets } from "@/integrations/google-sheets/sync";
 
+const REGISTRATION_CLOSE_DATE = new Date("2026-06-11T00:00:00-04:00");
+
 const SignupPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const registrationClosed = new Date() >= REGISTRATION_CLOSE_DATE;
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -79,6 +82,15 @@ const SignupPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (registrationClosed) {
+      toast({
+        title: "Registration Closed",
+        description: "Registration closed on June 10th, 2026.",
+        variant: "destructive",
+      });
+      return;
+    }
     
     if (formData.selectedCourses.length === 0) {
       toast({
@@ -194,9 +206,20 @@ const SignupPage = () => {
               Join our community of young learners and start your journey into technology and creativity.
             </p>
             <p className="mt-4 inline-block text-secondary font-heading text-sm uppercase tracking-wider border border-secondary/40 bg-secondary/10 rounded-md px-3 py-1 underline">
-              Registration closes May 31st
+              {registrationClosed ? "Registration is now closed" : "Registration closes June 10th"}
             </p>
           </div>
+
+          {registrationClosed ? (
+            <Card className="glass border-border/50">
+              <CardHeader>
+                <CardTitle className="text-primary text-glow-cyan">Registration Closed</CardTitle>
+                <CardDescription>
+                  Signups closed on June 10th, 2026. Please check back for our next session or reach out to us directly.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          ) : (
 
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Student Information */}
@@ -482,6 +505,7 @@ const SignupPage = () => {
               </Button>
             </div>
           </form>
+          )}
         </motion.div>
       </main>
 
