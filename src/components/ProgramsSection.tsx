@@ -79,7 +79,7 @@ const ProgramsSection = () => {
                   </p>
                 )}
                 <p className="text-xs text-secondary font-semibold mb-4 italic">
-                  <u>Registration closes by May 31st.</u>
+                  <u>Registration closes by June 10th.</u>
                 </p>
                 <div className="flex items-center justify-between text-xs">
                   <span className={`font-heading uppercase tracking-wider ${difficultyColor[program.difficulty]}`}>
