@@ -9,10 +9,12 @@ import BlogSection from "@/components/BlogSection";
 import PartnershipSection from "@/components/PartnershipSection";
 import TeamSection from "@/components/TeamSection";
 import Footer from "@/components/Footer";
+import RegistrationPopup from "@/components/RegistrationPopup";
 
 const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      <RegistrationPopup />
       <PixelGrid />
       <div className="sticky top-0 z-50">
         <TopBanner />
