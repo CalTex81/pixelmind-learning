@@ -75,7 +75,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} PixelMind Learning. All rights reserved.</p>
           <p>
-            Made by our founder, Anish Sahoo.
+            <span>Made by our founder, Anish Sahoo.</span>
           </p>
         </div>
 
