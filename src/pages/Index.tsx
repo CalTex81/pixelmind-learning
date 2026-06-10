@@ -9,6 +9,7 @@ import BlogSection from "@/components/BlogSection";
 import PartnershipSection from "@/components/PartnershipSection";
 import TeamSection from "@/components/TeamSection";
 import Footer from "@/components/Footer";
+import RegistrationPopup from "@/components/RegistrationPopup";
 
 const Index = () => {
   return (
