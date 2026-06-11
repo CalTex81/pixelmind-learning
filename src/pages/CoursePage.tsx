@@ -117,16 +117,14 @@ const CoursePage = () => {
                 )}
                 <div className="mt-4 p-4 bg-secondary/10 border border-secondary/30 rounded-lg">
                   <p className="text-sm text-secondary font-semibold italic underline">
-                    Registration closes by June 10th.
+                    Registration is now closed.
                   </p>
                 </div>
               </div>
             </div>
-            <Link to="/signup">
-              <Button variant="glow" size="sm" className="w-fit">
-                Sign Up Now
-              </Button>
-            </Link>
+            <Button variant="glow" size="sm" className="w-fit" disabled>
+              Registration Closed
+            </Button>
           </div>
         </motion.div>
 
