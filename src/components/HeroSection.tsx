@@ -36,8 +36,13 @@ const HeroSection = () => {
             >
               Explore Programs (For Students)
             </Button>
-            <Button variant="glow-outline" size="lg" className="text-base px-8 py-6" asChild>
-              <Link to="/join">Join Our Mission (For Mentors)</Link>
+            <Button
+              variant="glow-outline"
+              size="lg"
+              className="text-base px-8 py-6"
+              disabled
+            >
+              Recruitment Closed
             </Button>
           </div>
         </motion.div>
